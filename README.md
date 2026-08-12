@@ -1,4 +1,4 @@
-# Amateur Radio AI Project Companion Guide (v2)
+# Amateur Radio AI Project Companion Guide
 ## A Living Document for Building and Sharing Grounded Ham Radio Projects with Generative AI
 **By Rus Healy, K2UA**  
 *Grounded in the Project Development for Amateur Radio Session*
@@ -9,7 +9,7 @@
 
 Amateur radio is fundamentally a maker's hobby. For a century, hams have built antennas, soldered circuits, and wired up stations. Yet, when it came to software, many operators felt locked behind a wall of syntax, complex compiler tooling, and steep learning curves. 
 
-Generative AI has democratized software development, turning code into another "building material" that hams can shape. However, most people approach AI as a generalist chat tool, yielding what is known as **"AI Slop"** [3]—bloated, buggy, or outright hallucinated code that fails under real contest or RF conditions.
+Generative AI has democratized software development, turning code into another "building material" that hams can shape. However, most people approach AI as a generalist chat tool, yielding what is known as **"AI Slop"** [3]—bloated, buggy, or outright hallucinated code that fails even superficial inspection.
 
 To build reliable software, we must adopt the **Grounded AI** model [3]:
 *   **Curate Before You Code:** Never let the AI guess the rules or formulas. Always feed the AI primary source documents—rules, mathematical schemas, and log files [107].
