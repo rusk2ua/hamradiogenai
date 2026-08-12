@@ -86,7 +86,7 @@ Each of these functional, open-source projects demonstrates a distinct design pa
 *   **Design Pattern:** **Irregular Data Extraction**. Uses **PyPDF2** to scan and extract tabular PDF data [90]. Chronologically orders contacts, normalizes date strings to the `YYYY-MM-DD` standard, and formats space-delimited text lines [91, 92, 93].
 *   **Repository URL:** `https://github.com/rusk2ua/nyqp-cabrillo-fixer` [87]
 
-### Case Study 5: Moon Siting & Attenuation Calculator (`eme-calculator-project`)
+### Case Study 5: Moonbounce Antenna Siting & Attenuation Calculator (`eme-calculator-project`)
 *   **Description:** Guides operators on the optimal residential placement of large Earth-Moon-Earth (EME) dishes [69].
 *   **Design Pattern:** **Cloud-Native Serverless Computing**. Uses **PyEphem** to calculate annual moon trajectories, computes wind loading force (lbf) on parabolic dishes, and models tree attenuation (dB) across microwave bands [69, 71, 75]. Backend runs as an **AWS Lambda function** with a clean REST API [70, 72].
 *   **Repository URL:** `https://github.com/rusk2ua/eme-calculator-project` [66]
