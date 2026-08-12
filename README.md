@@ -134,8 +134,8 @@ We skip Copilot because we prefer standalone workspace tools for design-first co
     ```
 
 ### Step 3: Run AI-Driven Local Construction (Claude Desktop App)
-1.  Launch the **Claude Desktop Application** (which includes Claude Co-work) or open Gemini Canvas [8, 11].
-2.  Start a new task in Claude Co-work and select **Choose Folder**. Select your local project directory: `~/my-ham-radio-project` [50].
+1.  Launch the **Claude Desktop Application** (which includes Claude Cowork) or open Gemini Canvas.
+2.  Start a new task in Claude Cowork and select **Choose Folder**. Select your local project directory: `~/my-ham-radio-project`.
 3.  Write your first progressive prompt. For example:
     > *"I want to create a Python file named `log_parser.py` inside our folder. It should read a Cabrillo-formatted log file named `contest.log` and output the total number of contacts. Please write the Python script directly to my folder."*
 4.  Claude will natively write the `log_parser.py` file to your folder. If you encounter errors when testing, type:
@@ -163,10 +163,10 @@ Once your code works locally and you have verified its functionality, push it to
     *(Note: For subsequent updates, simply run `git add .`, `git commit -m "update message"`, and `git push` to keep your repo in sync).*
 
 ### Step 5: Activate Free Global Web Hosting
-If you built a frontend dashboard (like `nyqp-dashboard`), you can host it live on the web for free [98, 102].
+If you built a frontend dashboard (like `nyqp-dashboard`), you can host it live on the web for free.
 
-1.  Structure your project so all web files (`index.html`, `style.css`, etc.) reside in a subfolder named `/docs` [103].
-2.  Create an empty file named `.nojekyll` inside the `/docs` folder [103]. This tells GitHub Pages to serve your raw HTML without processing it through static generators [102]:
+1.  Structure your project so all web files (`index.html`, `style.css`, etc.) reside in a subfolder named `/docs`.
+2.  Create an empty file named `.nojekyll` inside the `/docs` folder. This tells GitHub Pages to serve your raw HTML without processing it through static generators:
     ```bash
     touch docs/.nojekyll
     ```
@@ -176,21 +176,19 @@ If you built a frontend dashboard (like `nyqp-dashboard`), you can host it live 
     git commit -m "Add docs folder for web deployment"
     git push
     ```
-4.  Go to your repository on `github.com` $\rightarrow$ **Settings** $\rightarrow$ **Pages** [102].
-5.  Under "Build and deployment", set the source to **Deploy from a branch**. Set the branch to **main** and the folder to **/docs** [102].
-6.  Click **Save** [102]. Your dashboard will be live globally at `https://your-username.github.io/my-ham-radio-project/` in under 60 seconds [102]!
+4.  Go to your repository on `github.com` $\rightarrow$ **Settings** $\rightarrow$ **Pages**.
+5.  Under "Build and deployment", set the source to **Deploy from a branch**. Set the branch to **main** and the folder to **/docs**.
+6.  Click **Save**. Your dashboard will be live globally at `https://your-username.github.io/my-ham-radio-project/` in under 60 seconds!
 
 ---
 
-## 6. Presenter Objection-Handling & Q&A Cheat Sheet
+## 6. Common Questions
 
-When presenting this material, you may encounter skeptics. Use these grounded talking points to address their concerns:
-
-*   **Skeptic:** *"AI is just generating 'AI slop'—it can't write real, reliable radio software."*
-    *   **Response:** "You are 100% correct about generic AI. If you ask a chatbot with no context to write code, you get buggy slop. But by curating our technical specifications (Rules PDFs, schema layouts) and utilizing a **Grounded AI** approach in tools like NotebookLM, we force the AI to write highly precise code that complies exactly with specifications. The difference is context curation."
-*   **Skeptic:** *"Using AI is cheating. Real hams write their own code."*
+*   **Q:** *"Doesn't AI just generate 'AI slop'? It can't write real, reliable radio software, dynamic web pages, or anything useful."*
+    *   **Response:** "You are 100% correct about generic AI. If you ask a chatbot with no context to write code, you get buggy slop. But by curating our technical specifications (Rules PDFs, schema layouts) and utilizing a **Grounded AI** approach in tools like Gemini Notebook, we can get the AI to write precise, functional code that complies exactly with our specifications. The difference is context curation."
+*   **Q:** *"Isn't using AI cheating? Real hams write their own code."*
     *   **Response:** "Hams didn't stop building transceivers when we moved from vacuum tubes to microchips—we adapted. AI is simply a smarter calculator. It handles the tedious syntax and typing so you can focus on system design, radio operations, and solving station bottlenecks. It turns ideas into reality faster."
-*   **Skeptic:** *"Is this workflow expensive? Do I need to spend hundreds on AI models?"*
+*   **Q:** *"Is this workflow expensive? Do I need to pay for a subscription to use AI models?"*
     *   **Response:** "No! The free tiers of Claude and Gemini are incredibly capable. You only need to upgrade to paid plans ($20/month) as you scale your projects to multi-file cloud-deployed applications or heavily exceed hourly session usage."
-*   **Skeptic:** *"I don't want to upload my logs to the public cloud. What about privacy?"*
-    *   **Response:** "By utilizing **Model Context Protocol (MCP)** and local file folder agents like Claude Co-work, your private contest log files never need to leave your computer. The AI reads and queries the data locally on your physical drive, keeping your station records completely secure."
+*   **Q:** *"What if I don't want to upload my logs to the public cloud? What about privacy?"*
+    *   **Response:** "By utilizing **Model Context Protocol (MCP)** and local file folder agents like Claude Cowork, your private contest log files never need to leave your computer. The AI reads and queries the data locally on your physical drive, keeping your data completely secure."
