@@ -55,7 +55,7 @@ Step 1: Set the Spec & Choose the Architecture (Draft requirements.md)
 When prompting your workspace engine (Gemini Canvas or Claude Cowork, etc), structure your instruction using this blueprint:
 
 1.  **Role:** Tell the AI who it is. *"Act as an expert Python developer who values clean, readable, single-file scripts with minimal external dependencies."*
-2.  **Context:** Detail what you are building. *"We are building a Maidenhead grid square map generator."*
+2.  **Context:** Detail what you are building. *"We are building a Maidenhead grid square map generator from a Cabrillo file."*
 3.  **Constraints:** Set clear limits. *"Use ONLY matplotlib and cartopy. Do not use an external database or containerization. Keep it beginner-friendly."*
 4.  **Input Data Schema:** Provide example inputs. *"The script will ingest a CSV file with columns: `callsign`, `freq`, `grid`, `date`."*
 5.  **Output Format:** Specify the target deliverable. *"Write a single, executable Python script named `maidenhead_map.py` that processes the CSV and saves a high-resolution PNG map."*
