@@ -51,8 +51,8 @@ Step 2: Basic File I/O (Read local Cabrillo logs, print row count)
 Step 1: Set the Spec & Choose the Architecture (Draft requirements.md)
 ```
 
-### The Anatomy of a Perfect Technical Prompt
-When prompting your workspace engine (Gemini Canvas or Claude Co-work), structure your instruction using this blueprint:
+### The Anatomy of a Strong Technical Prompt
+When prompting your workspace engine (Gemini Canvas or Claude Cowork, etc), structure your instruction using this blueprint:
 
 1.  **Role:** Tell the AI who it is. *"Act as an expert Python developer who values clean, readable, single-file scripts with minimal external dependencies."*
 2.  **Context:** Detail what you are building. *"We are building a Maidenhead grid square map generator."*
