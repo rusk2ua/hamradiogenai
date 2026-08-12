@@ -9,12 +9,12 @@
 
 Amateur radio is fundamentally a maker's hobby. For a century, hams have built antennas, soldered circuits, and wired up stations. Yet, when it came to software, many operators felt locked behind a wall of syntax, complex compiler tooling, and steep learning curves. 
 
-Generative AI has democratized software development, turning code into another "building material" that hams can shape. However, most people approach AI as a generalist chat tool, yielding what is known as **"AI Slop"** [3]—bloated, buggy, or outright hallucinated code that fails even superficial inspection.
+Generative AI has democratized software development, turning code into another "building material" that hams can shape. However, most people approach AI as a generalist chat tool, yielding what is known as **"AI Slop"** —bloated, buggy, or outright hallucinated code that fails even superficial inspection.
 
-To build reliable software, we must adopt the **Grounded AI** model [3]:
-*   **Curate Before You Code:** Never let the AI guess the rules or formulas. Always feed the AI primary source documents—rules, mathematical schemas, and log files [107].
-*   **Context Isolation:** Keep your workspace focused on a single project at a time so the AI's attention window remains clean and responsive [114].
-*   **Syntax is Generative, Logic is Human:** Use the AI to generate code structure and handle syntax, but retain control over the system design, error boundaries, and operational constraints [153].
+To build reliable software, we must adopt the **Grounded AI** model:
+*   **Curate Before You Code:** Never let the AI guess the rules or formulas. Always feed the AI primary source documents—rules, mathematical schemas, and log files.
+*   **Context Isolation:** Keep your workspace focused on a single project at a time so the AI's attention window remains clean and responsive.
+*   **Syntax is Generative, Logic is Human:** Use the AI to generate code structure and handle syntax, but retain control over the system design, error boundaries, and operational constraints.
 
 ---
 
@@ -22,16 +22,13 @@ To build reliable software, we must adopt the **Grounded AI** model [3]:
 
 To build our software, we use a curated toolbelt. Below is a detailed comparison of the major options on your workbench:
 
-| Capability / Feature | Google Gemini (Canvas) | Claude (Co-work) | ChatGPT (Codex) | Kiro (Spec Mode) |
+| Capability / Feature | Google Gemini (Canvas) | Claude (Cowork) | ChatGPT (Codex) | Kiro (Spec Mode) |
 | :--- | :--- | :--- | :--- | :--- |
-| **Primary Strength** | Collaborative, word processor-style canvas for side-by-side editing [8]. | Highly nuanced logical reasoning, desktop folder sync, expressive writing [6, 11]. | Strong general knowledge chat, but lacks code isolation structure [3, 12]. | Advanced, plan-first structured IDE for multi-file systems [153, 154]. |
-| **Interface Style** | Flexible sidebar Canvas [8]. | Split-screen artifacts (read-only) [7]. | Inline canvas (less flexible) [7, 8]. | Integrated development editor (VS Code fork) [154]. |
-| **Agent Capabilities** | Spark (cloud-based) [13]. | Co-work (reads and edits local files natively) [11, 12]. | Codex (desktop folder file editing) [12]. | Autonomous file modifications, console tools [153]. |
-| **Curation Integration** | Built-in Google Notebooks (NotebookLM) for source-grounded research [15, 16]. | Connectors (Notion, Drive) and customized Project contexts [9, 41]. | Standard custom GPT files and memory profile settings [37, 123]. | Local steering files (`product.md`, `tech.md`) [165]. |
-| **Recommendation** | **Highly Recommended** for collaborative planning, brainstorming, and single-file creation [8]. | **Highly Recommended** for multi-file script construction, documentation, and local folder management [11]. | **Not Recommended** due to lack of plan-first coding modes, cluttered Codex app, and inflexible Canvas [12]. | **Advanced Track** for hams with stronger development backgrounds wanting to build large-scale applications [154]. |
-
-### The Codex Critique
-Although OpenAI's **Codex** desktop application is capable, it is not recommended for this workflow [12]. Codex lacks native, plan-first structured coding modes [12, 153], lacks grounded research workspaces equivalent to Google NotebookLM [15], and its desktop app has no mechanism to distinguish between standard conversational chats, folder co-work tasks, and coding sessions [12]. This leads to cluttered sessions where code context easily degrades, resulting in buggy outcomes [12].
+| **Primary Strength** | Collaborative, word processor-style canvas for side-by-side editing. | Highly nuanced logical reasoning, desktop folder sync, expressive writing. | Strong general knowledge chat, but lacks code isolation structure. | Advanced, plan-first structured IDE for multi-file systems. |
+| **Interface Style** | Flexible sidebar Canvas. | Split-screen artifacts (read-only). | Inline canvas (less flexible). | Integrated development editor (VS Code fork). |
+| **Agent Capabilities** | Spark (cloud-based). | Claude Cowork (reads and edits local files natively). | Codex (desktop folder file editing). | Autonomous file modifications, console tools. |
+| **Curation Integration** | Built-in Google Notebooks (Gemini Notebook) for source-grounded research. | Connectors (Notion, Drive) and customized Project contexts. | Standard custom GPT files and memory profile settings. | Local steering files (`product.md`, `tech.md`). |
+| **Recommendation** | **Highly Recommended** for collaborative planning, brainstorming, and single-file creation. | **Highly Recommended** for multi-file script construction, documentation, and local folder management. | **Not Recommended** due to poor consistently poor results. |
 
 ---
 
@@ -68,28 +65,28 @@ Each of these functional, open-source projects demonstrates a distinct design pa
 
 ### Case Study 1: Interactive Results Dashboard (`nyqp-dashboard`)
 *   **Description:** A modern, interactive web-based dashboard presenting official contest results.
-*   **Design Pattern:** **Zero-Dependency Responsive Design**. Built using pure static HTML5, CSS variables, and vanilla JS [100]. Charts are rendered dynamically via CDN-hosted **Chart.js** [100]. No node modules, no frameworks, no build steps required [100, 101]. Highly performant and accessible [98].
-*   **Repository URL:** `https://github.com/rusk2ua/nyqp-dashboard` [95]
+*   **Design Pattern:** **Zero-Dependency Responsive Design**. Built using pure static HTML5, CSS variables, and vanilla JS. Charts are rendered dynamically via CDN-hosted **Chart.js**. No node modules, no frameworks, no build steps required. Highly performant and accessible.
+*   **Repository URL:** `https://github.com/rusk2ua/nyqp-dashboard`
 
 ### Case Study 2: Maidenhead Grid Square Map Generator (`grid-mapper`)
-*   **Description:** Reads contest log files and draws color-coded Maidenhead grid square boundaries on a geographic map [79].
-*   **Design Pattern:** **Geographic Density Visualization**. Uses **matplotlib** and **cartopy** to draw actual 2° × 1° field grid square boundaries [79, 84]. Automatically detects active continents based on log files and scales map bounds [79]. Color intensity highlights contact density [79].
-*   **Repository URL:** `https://github.com/rusk2ua/grid-mapper` [76]
+*   **Description:** Reads contest log files and draws color-coded Maidenhead grid square boundaries on a geographic map.
+*   **Design Pattern:** **Geographic Density Visualization**. Uses **matplotlib** and **cartopy** to draw actual 2° × 1° field grid square boundaries. Automatically detects active continents based on log files and scales map bounds. Color intensity highlights contact density.
+*   **Repository URL:** `https://github.com/rusk2ua/grid-mapper`
 
 ### Case Study 3: Microwave Log Directional Analyst (`10ghz-log-analyzer`)
-*   **Description:** A Python-based log evaluator for the ARRL 10 GHz and Up Contest [58].
-*   **Design Pattern:** **Microwave Directional Visualization**. Calculates exact distance (km) and compass bearings between grid squares [58]. Generates beautiful **Polar Radar Plots** mapping total points by compass bearings (16 directions) and frequency bands [63]. Essential for evaluating microwave path obstacles [64].
-*   **Repository URL:** `https://github.com/rusk2ua/10ghz-log-analyzer` [55]
+*   **Description:** A Python-based log evaluator for the ARRL 10 GHz and Up Contest.
+*   **Design Pattern:** **Microwave Directional Visualization**. Calculates exact distance (km) and compass bearings between grid squares. Generates beautiful **Polar Radar Plots** mapping total points by compass bearings (16 directions) and frequency bands. Essential for evaluating microwave path obstacles.
+*   **Repository URL:** `https://github.com/rusk2ua/10ghz-log-analyzer`
 
 ### Case Study 4: Cabrillo Log Normalizer (`nyqp-cabrillo-fixer`)
-*   **Description:** Extracts QSO columns from irregular contest PDF files and formats them into rules-compliant Cabrillo 3.0 files [90].
-*   **Design Pattern:** **Irregular Data Extraction**. Uses **PyPDF2** to scan and extract tabular PDF data [90]. Chronologically orders contacts, normalizes date strings to the `YYYY-MM-DD` standard, and formats space-delimited text lines [91, 92, 93].
-*   **Repository URL:** `https://github.com/rusk2ua/nyqp-cabrillo-fixer` [87]
+*   **Description:** Extracts QSO columns from irregular contest PDF files and formats them into rules-compliant Cabrillo 3.0 files.
+*   **Design Pattern:** **Irregular Data Extraction**. Uses **PyPDF2** to scan and extract tabular PDF data. Chronologically orders contacts, normalizes date strings to the `YYYY-MM-DD` standard, and formats space-delimited text lines.
+*   **Repository URL:** `https://github.com/rusk2ua/nyqp-cabrillo-fixer` 
 
 ### Case Study 5: Moonbounce Antenna Siting & Attenuation Calculator (`eme-calculator-project`)
-*   **Description:** Guides operators on the optimal residential placement of large Earth-Moon-Earth (EME) dishes [69].
-*   **Design Pattern:** **Cloud-Native Serverless Computing**. Uses **PyEphem** to calculate annual moon trajectories, computes wind loading force (lbf) on parabolic dishes, and models tree attenuation (dB) across microwave bands [69, 71, 75]. Backend runs as an **AWS Lambda function** with a clean REST API [70, 72].
-*   **Repository URL:** `https://github.com/rusk2ua/eme-calculator-project` [66]
+*   **Description:** Guides operators on the optimal residential placement of large Earth-Moon-Earth (EME) dishes.
+*   **Design Pattern:** **Cloud-Native Serverless Computing**. Uses **PyEphem** to calculate annual moon trajectories, computes wind loading force (lbf) on parabolic dishes, and models tree attenuation (dB) across microwave bands. Backend runs as an **AWS Lambda function** with a clean REST API.
+*   **Repository URL:** `https://github.com/rusk2ua/eme-calculator-project`
 
 ---
 
@@ -97,9 +94,8 @@ Each of these functional, open-source projects demonstrates a distinct design pa
 
 This step-by-step leave-behind walks you through setting up Git, writing code natively inside your local workspace using your AI companion, and pushing updates securely from the terminal. 
 
-### Why We SKIP Microsoft Copilot
-Microsoft Copilot acts as a transactional, inline autocomplete engine. It is designed for experienced programmers who want to speed up repetitive syntax typing. For the grounded builder, **Copilot leads to fragmented, unvetted, and buggy "slop" code** because it does not encourage design-stage planning, lacks localized context curation, and locks you into specific commercial code editors. Instead, we use standalone AI workspaces (Gemini Canvas or Claude Co-work) where we can curate reference materials first and collaborate on design before writing a single file.
-
+### Why We skip Microsoft Copilot
+We skip Copilot because we prefer standalone workspace tools for design-first collaboration.
 ---
 
 ### Step 1: Create Your Online Hub
