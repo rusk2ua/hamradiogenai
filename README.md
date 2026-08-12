@@ -1,7 +1,7 @@
 # Amateur Radio AI Project Companion Guide
 ## A Living Document for Building and Sharing Grounded Ham Radio Projects with Generative AI
 **By Rus Healy, K2UA**  
-*Grounded in the Project Development for Amateur Radio Session*
+*Based on the Project Development for Amateur Radio Session*
 
 ---
 
