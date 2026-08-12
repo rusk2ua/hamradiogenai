@@ -95,7 +95,9 @@ Each of these functional, open-source projects demonstrates a distinct design pa
 This step-by-step leave-behind walks you through setting up Git, writing code natively inside your local workspace using your AI companion, and pushing updates securely from the terminal. 
 
 ### Why We skip Microsoft Copilot
+
 We skip Copilot because we prefer standalone workspace tools for design-first collaboration.
+
 ---
 
 ### Step 1: Create Your Online Hub
