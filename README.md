@@ -1,5 +1,5 @@
 # Amateur Radio AI Project Companion Guide
-## A Living Document for Building and Sharing Ham Radio Projects with Generative AI
+## Building and Sharing Ham Radio Projects with Generative AI
 **By Rus Healy, K2UA**  
 *Based on the Project Development for Amateur Radio Session*
 
@@ -18,7 +18,7 @@ To build reliable software, we must adopt the **Grounded AI** model [3]:
 
 ---
 
-## 2. The Toolbelt: Curation, Collaborative Workspaces, and Code Editors
+## 2. Curation, Collaborative Workspaces, and Code Editors
 
 To build our software, we use a curated toolbelt. Below is a detailed comparison of the major options on your workbench:
 
