@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ham Radio Generative AI Guide</title>
+<meta name="description" content="Building real Amateur Radio projects with generative AI: principles, prompt library, project gallery and setup guide by Rus Healy, K2UA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{--ink:#14213D;--body:#3E4A5C;--muted:#5A6475;--paper:#F3EFE6;--card:#FFFDF8;--line:#D9D2C3;--night:#0F1B2D;--night2:#16263D;--amber:#F2A541;--rust:#A35716;--sky:#C3CEDB}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--paper);color:var(--body);font:17px/1.65 'IBM Plex Sans',Arial,sans-serif}
+a{color:var(--rust)}
+a:hover{color:var(--ink)}
+nav.top{position:sticky;top:0;z-index:5;background:var(--night);border-bottom:3px solid var(--amber)}
+nav.top .wrap{display:flex;gap:4px 18px;align-items:center;flex-wrap:wrap;padding:12px 16px;max-width:1100px;margin:0 auto}
+nav.top .brand{font:700 16px 'Space Grotesk',Arial,sans-serif;color:#F3EFE6;text-decoration:none;margin-right:8px}
+nav.top a.link{color:var(--sky);text-decoration:none;font-size:14px;white-space:nowrap}
+nav.top a.link:hover{color:var(--amber)}
+header.hero{background:var(--night);color:#F3EFE6;padding:72px 0 64px}
+header.hero .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.eyebrow{font:600 13px 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+header.hero h1{font:700 clamp(36px,6vw,64px)/1.05 'Space Grotesk',Arial,sans-serif;margin:14px 0 18px;max-width:16ch}
+header.hero p.lede{font-size:20px;color:var(--sky);max-width:60ch;margin:0 0 28px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.cta a{display:inline-block;padding:11px 18px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px}
+.cta a.primary{background:var(--amber);color:var(--night)}
+.cta a.ghost{border:1.5px solid #3A4E6B;color:#F3EFE6}
+.cta a.ghost:hover{border-color:var(--amber);color:var(--amber)}
+main{max-width:1100px;margin:0 auto;padding:24px 16px 64px}
+.quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:8px 0 24px}
+.quick a{display:block;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:18px 20px;text-decoration:none;color:var(--body)}
+.quick a:hover{border-color:var(--ink)}
+.quick b{display:block;font:700 19px 'Space Grotesk',Arial,sans-serif;color:var(--ink);margin-bottom:4px}
+section.doc{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:8px 32px 28px;margin:28px 0}
+section.doc h1{font:700 34px/1.15 'Space Grotesk',Arial,sans-serif;color:var(--ink);margin:28px 0 12px}
+section.doc h2{font:700 24px/1.2 'Space Grotesk',Arial,sans-serif;color:var(--ink);margin:30px 0 8px}
+section.doc h3{font:700 19px/1.3 'Space Grotesk',Arial,sans-serif;color:var(--ink);margin:22px 0 6px}
+section.doc strong{color:var(--ink)}
+section.doc hr{border:0;border-top:1.5px solid var(--line);margin:28px 0}
+section.doc blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--amber);background:#FBF4E6;color:var(--ink)}
+section.doc blockquote p{margin:4px 0}
+.tbl{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:15.5px;min-width:560px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--ink);background:#EFE9DC}
+code{font:14.5px 'JetBrains Mono',monospace;background:#ECE6D8;padding:1px 5px;border-radius:5px;color:var(--ink);overflow-wrap:anywhere}
+.codewrap{position:relative;margin:12px 0}
+pre{background:var(--night);color:#E6ECF3;padding:18px 18px;border-radius:12px;overflow-x:auto;margin:0}
+pre code{background:none;color:inherit;padding:0;font-size:14px;line-height:1.55;white-space:pre}
+button.copy{position:absolute;top:8px;right:8px;font:600 12px 'IBM Plex Sans',Arial,sans-serif;background:var(--night2);color:var(--amber);border:1px solid #3A4E6B;border-radius:7px;padding:5px 10px;cursor:pointer}
+button.copy:hover{border-color:var(--amber)}
+ul li,ol li{margin:4px 0}
+footer{background:var(--night);color:var(--sky);padding:36px 16px;font-size:14px}
+footer .wrap{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between}
+footer a{color:var(--amber)}
+@media (max-width:640px){section.doc{padding:4px 18px 20px}header.hero{padding:48px 0}}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+<a class="brand" href="#top">K2UA · Ham Radio GenAI</a>
+<a class="link" href="#principles">Principles</a>
+<a class="link" href="#workbench">Workbench</a>
+<a class="link" href="#prompting">Prompting</a>
+<a class="link" href="#prompts">Prompt library</a>
+<a class="link" href="#projects">Projects</a>
+<a class="link" href="#good-repo-checklist">Checklist</a>
+<a class="link" href="#mcp">MCP safety</a>
+<a class="link" href="#github-setup">Get started</a>
+<a class="link" href="#faq">FAQ</a>
+</div></nav>
+<header class="hero" id="top"><div class="wrap">
+<div class="eyebrow">Microwave Update 2026 · Living resource</div>
+<h1>From Soldering Irons to Syntax</h1>
+<p class="lede">How hams build real station tools with generative AI, and how to tell good output from slop. Principles, a prompt library, a gallery of working projects and a step-by-step setup guide.</p>
+<div class="cta">
+<a class="primary" href="#prompts">Prompt library</a>
+<a class="ghost" href="#projects">Project gallery</a>
+<a class="ghost" href="#github-setup">Get started</a>
+<a class="ghost" href="https://github.com/rusk2ua/hamradiogenai">Source on GitHub</a>
+</div>
+</div></header>
+<main>
+<div class="quick">
+<a href="#principles"><b>New here?</b>Start with the three rules of the grounded builder.</a>
+<a href="#prompts"><b>Want to build tonight?</b>Copy a prompt, add your rules or datasheet, go.</a>
+<a href="#good-repo-checklist"><b>Already building?</b>Check your repo against what good looks like.</a>
+</div>
+<section class="doc" id="principles">
+<h1>The Grounded Builder</h1>
+<p>Amateur Radio has always been a maker's hobby. We didn't stop building when tubes gave way to transistors, or through-hole to surface mount. Software has been the wall for many of us: hardware follows physics, but software can feel like a labyrinth of syntax, toolchains and frameworks.</p>
+<p>Generative AI is a new building material, like copper wire or silicon. It handles the syntax. You still decide what to build, and you still decide whether it works.</p>
+<p>Ask a generic chatbot a generic question and you get <strong>AI slop</strong>: bloated, buggy, plausible-looking code. The fix isn't a better chatbot. It's three habits.</p>
+<h2>1. Curate before you code</h2>
+<p>Never let the model guess the rules or the formulas. Hand it the primary source:</p>
+<ul>
+<li>the contest sponsor's rules (the ARRL rules PDF, not a web search for them)</li>
+<li>datasheets and application notes</li>
+<li>a real sample log, in the exact format you'll feed it</li>
+<li>the math you trust: path loss, Maidenhead conversion, a scoring table</li>
+</ul>
+<p>Left to search the web on its own, a model can land on out-of-date or non-authoritative sources. Curation is the filter.</p>
+<h2>2. Isolate the context</h2>
+<p>One project, one folder, one conversation. Give it only the sources that matter to this project. Mixing your EME siting calculator and your remote keyer in one thread blurs both.</p>
+<h2>3. Be the control operator</h2>
+<p>The AI writes syntax. <strong>Logic, error boundaries and compliance stay yours.</strong> You are the architect; the AI is the high-speed technician. In practice that means:</p>
+<ul>
+<li>check output against the rules document and against real logs, not by reading the code</li>
+<li>ask for tests that pin the important numbers (a multiplier table, a timing budget) to the source</li>
+<li>write down what you haven't verified yet</li>
+</ul>
+<p>Two real examples from <a href="https://github.com/rusk2ua/10ghz-log-analyzer">10ghz-log-analyzer</a>: a blank spreadsheet row that was forward-filled into a phantom duplicate QSO (fixed in v1.5.1), and band multipliers above 122 GHz that didn't match section 5.2 of the rules (fixed in v1.6.1). Both looked fine at a glance. Both were caught by checking against the rules and real logs.</p>
+</section>
+<section class="doc" id="workbench">
+<h1>The workbench (October 2026)</h1>
+<p>Like choosing a transceiver for a band, pick the tool for the job. This is my experience on my own projects; test yours against your own source material.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What I use it for</th>
+<th>My verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Claude</strong> (desktop app, web, mobile)</td>
+<td>Multi-file projects in local folders, code, tests, documentation, slide decks, websites</td>
+<td><strong>Primary.</strong> Covers nearly everything I do</td>
+</tr>
+<tr>
+<td><strong>Gemini Notebook</strong></td>
+<td>Source-grounded research, image generation, podcast-style audio overviews</td>
+<td><strong>Very much worth a look</strong>, especially for learning a topic and for media</td>
+</tr>
+<tr>
+<td><strong>Kiro</strong></td>
+<td>Spec-first IDE (a VS Code fork) for people who live in an editor</td>
+<td>Rarely, now. Claude covers what I used it for</td>
+</tr>
+<tr>
+<td><strong>ChatGPT</strong></td>
+<td>Complex technical work</td>
+<td><strong>Hard no.</strong> Consistently poor results for me, most recently a schematic that stayed wrong through multiple rounds of correction</td>
+</tr>
+</tbody>
+</table>
+<h2>What changed since the paper (August 2026)</h2>
+<ul>
+<li><strong>"Claude Cowork" is simply part of Claude now.</strong> Point the desktop app at a project folder and it reads, writes and runs code there, and keeps working while you step away.</li>
+<li><strong>House rules, written once.</strong> Skills and project instructions carry your conventions (versioning, README style, commit identity) into every session.</li>
+<li><strong>Memory across chats.</strong> It remembers your station, your repos and your decisions, so you re-explain less.</li>
+</ul>
+<h2>Learning companions</h2>
+<ul>
+<li>Paul J Lipsky's YouTube channel (<a href="https://www.youtube.com/@pauljlipsky">@pauljlipsky</a>) is a good video companion for getting started with these tools.</li>
+</ul>
+</section>
+<section class="doc" id="prompting">
+<h1>Prompting: the staircase and the anatomy</h1>
+<h2>Climb the Progressive Prompting Staircase</h2>
+<p>Never ask for the whole application in one prompt. Build it in steps, each on working code from the last, so you're never debugging five new problems at once. It's the same as bringing up a microwave chain: LO, then mixer, then PA, then sequencing.</p>
+<ol>
+<li><strong>Spec and architecture.</strong> Write down the requirements and the approach before any code.</li>
+<li><strong>File in, file out.</strong> "Read this Cabrillo log and print the QSO count."</li>
+<li><strong>Core logic and math.</strong> Parsing, distance and bearing, scoring.</li>
+<li><strong>Visuals and interface.</strong> Maps, plots, a web page.</li>
+<li><strong>Polish, test, document.</strong> Edge cases, tests, README, changelog.</li>
+</ol>
+<h3>The one rule to say first</h3>
+<blockquote>
+<p>Always ask me clarifying questions before you begin writing code.</p>
+</blockquote>
+<p>It forces the model to work from your constraints instead of guessing. Better still, its questions surface design decisions you hadn't made yet.</p>
+<h2>Anatomy of a strong technical prompt</h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What it says</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Role</strong></td>
+<td>Who the AI is and what it values</td>
+<td>"You're a Python developer who values clean, single-file scripts."</td>
+</tr>
+<tr>
+<td><strong>Context</strong></td>
+<td>What you're building and why</td>
+<td>"A grid-square map of a 10 GHz contest log, to share with other rovers."</td>
+</tr>
+<tr>
+<td><strong>Constraints</strong></td>
+<td>The hard limits</td>
+<td>"Python only, runs on Mac and Windows, no database. Score per the attached rules."</td>
+</tr>
+<tr>
+<td><strong>Input</strong></td>
+<td>The shape of your data</td>
+<td>"A Cabrillo 3.0 log. Sample attached."</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>The deliverable</td>
+<td>"One high-resolution PNG per band, darker grids for more contacts."</td>
+</tr>
+</tbody>
+</table>
+<p>Not a developer? Leave the libraries out. Describe the picture you want and where it will run (your own computer, or a cloud account). The model will choose sensible libraries. If you are a developer, name them.</p>
+<p>Ready-to-adapt prompts are in the <a href="#prompts">prompt library</a>.</p>
+</section>
+<section class="doc" id="prompts">
+<h1>Prompt library</h1>
+<p>Templates modeled on how the projects in the <a href="#projects">gallery</a> were built. Copy one, replace the bracketed parts, attach your source material, and start a fresh conversation per project. Every one assumes you've said: <strong>"Ask me clarifying questions before you write any code."</strong></p>
+<hr />
+<h2>1. Score a contest from the official rules</h2>
+<p><em>Pattern behind <a href="https://github.com/rusk2ua/10ghz-log-analyzer">10ghz-log-analyzer</a>.</em></p>
+<pre><code class="language-text">You're a Python developer who writes clear, well-commented scripts for
+non-programmers. I'm a ham radio contester, not a developer.
+
+I've attached the official rules for [CONTEST NAME] and a sample log in
+[Cabrillo 3.0 / CSV with columns ...]. Score the log exactly as the rules
+say. Do not look up the rules anywhere else. If the rules are ambiguous,
+stop and ask me.
+
+Start with step 1 only: read the log and print the number of QSOs per band.
+Then we'll add scoring, then reports, one step at a time.
+
+When we get to scoring, add a test that pins every multiplier and point
+value to the rules section it came from.
+</code></pre>
+<h2>2. Map grids worked from a log</h2>
+<p><em>Pattern behind <a href="https://github.com/rusk2ua/grid-mapper">grid-mapper</a>.</em></p>
+<pre><code class="language-text">I want a map of the Maidenhead grid squares in a contest log, one image
+per band, with darker squares for more contacts and labels only on grids
+I worked. Input is a Cabrillo log (sample attached). It should run with one
+command on Mac or Windows. I don't know which mapping libraries to use;
+pick sensible ones and tell me why. Size the map automatically to the area
+the log covers.
+</code></pre>
+<h2>3. Revise someone else's firmware, with credit</h2>
+<p><em>Pattern behind <a href="https://github.com/rusk2ua/ve2ug-optical-beacon-project">ve2ug-optical-beacon-project</a>.</em></p>
+<pre><code class="language-text">Attached is [AUTHOR, CALL]'s original sketch and documentation for
+[PROJECT]. Review the firmware for timing and robustness problems and
+propose fixes, but don't change the core behavior without asking.
+
+Then set it up as a GitHub repo:
+- README with a version table and a test-status table (what's verified,
+  what isn't)
+- CHANGELOG with &quot;Added&quot;, &quot;Changed&quot;, &quot;Unchanged&quot; (what's still the original
+  author's) and the reason for each change
+- credit the original author everywhere the design is described
+- no real credentials in the code; placeholders with a warning
+Convert the original PDF docs to Markdown under docs/.
+</code></pre>
+<h2>4. Turn a design decision into a calculator</h2>
+<p><em>Pattern behind <code>tools/tia_calc.py</code> in <a href="https://github.com/rusk2ua/optical-receive-chain">optical-receive-chain</a>.</em></p>
+<pre><code class="language-text">I'm building a photodiode transimpedance amplifier: [PHOTODIODE] at
+[BIAS], [OP-AMP], target flat response [F1] to [F2]. Datasheets attached.
+
+Don't just tell me Rf and Cf. Write a small Python script, standard library
+only, that calculates stability margin, bandwidth, noise and DC headroom,
+with presets for [OP-AMP LIST], and prints a table. Say in the output which
+numbers are ballpark datasheet values I should measure on my own build.
+</code></pre>
+<p>Swap in your own problem: path loss and link budget between two grids, rain fade at 24 GHz, dish wind load, feed offset.</p>
+<h2>5. Specify a station system before building it</h2>
+<p><em>Pattern behind <a href="https://github.com/rusk2ua/remkey">remkey</a>.</em></p>
+<pre><code class="language-text">I want to [GOAL, e.g. send CW with my own paddle to my shack remotely].
+My station: [RIG, interfaces, what runs on the shack PC, how I reach it
+remotely, what I won't change]. Constraints: [safety, latency, budget,
+parts on hand].
+
+Before any code, write docs/build-plan.md: the architecture, the failure
+modes and what the system does in each (especially link loss while
+transmitting), a parts list, and a phased build and test plan. Ask me
+about anything you'd otherwise assume.
+
+When we write code: tests that run without hardware, a simulation of the
+firmware if possible, and CI on every push.
+</code></pre>
+<h2>6. Put a web front end on a working command-line tool</h2>
+<p><em>Pattern behind <a href="https://github.com/rusk2ua/10ghz-web-logger-analyzer">10ghz-web-logger-analyzer</a>.</em></p>
+<pre><code class="language-text">My command-line tools [REPO LINKS] work and are tested. Build a web front
+end that runs them unmodified (vendor them in with a sync script; never
+hand-edit the copies). Users upload a log and download results.
+
+Add a test proving the web app's outputs match the CLI's for the same log.
+Deploy target: [my own computer only / AWS serverless / GitHub Pages
+static site]. Give me a local mode that runs without the cloud.
+</code></pre>
+<h2>7. Your house rules (set once)</h2>
+<p>Put this in a project's instructions, or ask Claude to remember it.</p>
+<pre><code class="language-text">House rules for all my GitHub projects:
+- Commit as [NAME] &lt;[ID]+[USER]@users.noreply.github.com&gt;. Never use my
+  personal email.
+- Versioning: [date-based YYYY.MM.DD / semantic].
+- Every change gets a CHANGELOG entry with the reason.
+- README always has: what it is, how to run it, current version, and what
+  has and hasn't been tested.
+- No secrets in the repo. Placeholders plus .gitignore.
+- Credit upstream authors. Link restricted datasheets; don't copy them.
+</code></pre>
+<h2>8. Report a bug so it gets fixed properly</h2>
+<pre><code class="language-text">I ran [COMMAND] on [INPUT, attached] and got this:
+
+[PASTE THE FULL ERROR OR WRONG OUTPUT]
+
+Expected: [WHAT THE RULES / DATASHEET SAY IT SHOULD BE].
+Find the root cause before changing anything. Fix it in place, add a test
+that would have caught it, and add a CHANGELOG entry that says who is
+affected.
+</code></pre>
+</section>
+<section class="doc" id="projects">
+<h1>Project gallery</h1>
+<p>Real, public, AI-assisted ham radio projects by K2UA. Each one shows a technique worth copying.</p>
+<h2>Microwave and contesting</h2>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>What it does</th>
+<th>Technique to copy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/rusk2ua/10ghz-log-analyzer">10ghz-log-analyzer</a></td>
+<td>Scores ARRL 10 GHz and Up logs, writes Cabrillo, plots points by compass direction and band</td>
+<td><strong>Ground in the rules.</strong> Scoring tied to the rules document; fixes documented with who they affect</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rusk2ua/10ghz-web-logger-analyzer">10ghz-web-logger-analyzer</a> · <a href="https://10ghz.microwavedx.com">live site</a></td>
+<td>Web edition: upload a log, get Cabrillo, reports, polar plots and maps in one .zip</td>
+<td><strong>Engine before dashboard.</strong> Runs the CLI tools unmodified, with a web-vs-CLI parity test</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rusk2ua/grid-mapper">grid-mapper</a></td>
+<td>Maidenhead grid density and path maps from a Cabrillo log, per band</td>
+<td><strong>Describe the output, not the libraries.</strong> One command, automatic scaling</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rusk2ua/eme-calculator-project">eme-calculator-project</a></td>
+<td>EME dish siting: moon windows, tree loss by band, wind load</td>
+<td><strong>Start small, iterate.</strong> Experimental, and labeled that way</td>
+</tr>
+</tbody>
+</table>
+<h2>Optical and hardware</h2>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>What it does</th>
+<th>Technique to copy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/rusk2ua/ve2ug-optical-beacon-project">ve2ug-optical-beacon-project</a></td>
+<td>VE2UG's ESP8266 Q65/CW optical beacon, revised with an NTP sync guard, Wi-Fi timeout and diagnostics</td>
+<td><strong>Respect the source.</strong> Credit, an "Unchanged" list, honest test status</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rusk2ua/optical-receive-chain">optical-receive-chain</a></td>
+<td>940 nm receiver: lens, PD49PI, TIA, TDA2050, with SVG schematics and test tools</td>
+<td><strong>Make it show its math.</strong> A re-runnable TIA calculator instead of a one-off answer</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rusk2ua/remkey">remkey</a></td>
+<td>Remote paddle CW for an IC-7610 driving a tower-top 10 GHz transverter, plus LoRa tower telemetry</td>
+<td><strong>Tests before the tower.</strong> CI on three OSes, firmware simulation, "not yet run on hardware" stated up front</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rusk2ua/adalm-pluto-resources">adalm-pluto-resources</a></td>
+<td>PlutoSDR firmware comparison and a GPSDO reference-clock mod</td>
+<td><strong>Documentation is a deliverable.</strong> Sourced, geography-aware guidance</td>
+</tr>
+</tbody>
+</table>
+<h2>Logs, data and results</h2>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>What it does</th>
+<th>Technique to copy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/rusk2ua/nyqp-dashboard">nyqp-dashboard</a> · <a href="https://rusk2ua.github.io/nyqp-dashboard/">live site</a></td>
+<td>Interactive New York QSO Party results</td>
+<td><strong>Zero-build static site.</strong> HTML, CSS and Chart.js on free GitHub Pages hosting</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rusk2ua/nyqp-cabrillo-fixer">nyqp-cabrillo-fixer</a></td>
+<td>Turns irregular submitted logs into rules-compliant Cabrillo 3.0</td>
+<td><strong>Normalize messy data</strong> before anything downstream sees it</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rusk2ua/ham-mcp">ham-mcp</a></td>
+<td>MCP server that lets an AI query ADIF and Cabrillo logs from Google Drive or S3</td>
+<td><strong>Connect your data.</strong> (No authentication yet; see <a href="#mcp">MCP safety</a>)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rusk2ua/arrl-lotw-resources">arrl-lotw-resources</a></td>
+<td>Python tools for downloading and working with your LoTW QSO history</td>
+<td><strong>Read the API docs first</strong>, then automate</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="doc" id="good-repo-checklist">
+<h1>What good looks like: the repo checklist</h1>
+<p>Every project in the <a href="#projects">gallery</a> aims for this. None of it is hard, and the AI will do nearly all of it if you ask once and make it a <a href="#prompts">house rule</a>.</p>
+<ul>
+<li><strong>README</strong> that says what it is, how to run it, the current version, and what has and hasn't been tested</li>
+<li><strong>CHANGELOG</strong> with the reason for each change, and who a fix affects</li>
+<li><strong>One versioning scheme</strong>, used consistently (date-based <code>YYYY.MM.DD</code> or semantic <code>1.6.1</code>)</li>
+<li><strong>A LICENSE</strong>, and credit for any upstream author whose work you built on</li>
+<li><strong>Sample data</strong>, so a fresh clone runs immediately</li>
+<li><strong>Tests</strong>, and CI that runs them on every push</li>
+<li><strong>Tests that pin the important numbers</strong> to their source: multipliers to the rules, timing to the spec</li>
+<li><strong>No secrets</strong>: placeholders for credentials, and a <code>.gitignore</code> for local files, virtual environments and <code>.DS_Store</code></li>
+<li><strong>Commits use your GitHub noreply email</strong>, never your personal one</li>
+<li><strong>Link restricted datasheets</strong>; don't copy them into the repo</li>
+<li><strong>State what you haven't verified.</strong> "Not yet run on real hardware" is a feature, not an embarrassment</li>
+</ul>
+<h2>Protect your email before your first commit</h2>
+<p>Commits are public and permanent. Find your noreply address in GitHub <strong>Settings → Emails</strong> (it looks like <code>1234567+yourname@users.noreply.github.com</code>), then:</p>
+<pre><code class="language-bash">git config --global user.email &quot;1234567+yourname@users.noreply.github.com&quot;
+</code></pre>
+<p>In the same Emails settings you can turn on <strong>"Block command line pushes that expose my email."</strong> Then tell your AI tool to use the noreply address for every commit.</p>
+</section>
+<section class="doc" id="mcp">
+<h1>MCP: connecting AI to your data, safely</h1>
+<p>The <strong>Model Context Protocol (MCP)</strong> is a standard plug between an AI assistant and your data or tools, much as a TNC connected a radio to a computer for packet. With an MCP server connected, you can ask things like:</p>
+<ul>
+<li>"Graph 10 GHz QSO counts by year for the last five years from the logs in my Logs folder."</li>
+<li>"Compare my QSO rates in ARRL DX and CQWW over the last three years."</li>
+<li>"Using only official AWS documentation, give me a step-by-step deployment process for ..."</li>
+</ul>
+<p>That last pattern is grounding again, through a different pipe: connect an authoritative documentation server, then tell the model to use only it.</p>
+<p>My <a href="https://github.com/rusk2ua/ham-mcp">ham-mcp</a> project is a simple example: it lets an AI query ADIF and Cabrillo logs, and PDFs, stored in Google Drive or Amazon S3.</p>
+<h2>The catch: a security minefield</h2>
+<p>As of May 2026 (figures cited in the Proceedings paper):</p>
+<table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>22,775</strong></td>
+<td>MCP servers listed in the Glama directory. Most are weekend projects</td>
+</tr>
+<tr>
+<td><strong>36.7%</strong></td>
+<td>of public MCP servers carry server-side request forgery (SSRF) vulnerabilities</td>
+</tr>
+<tr>
+<td><strong>41%</strong></td>
+<td>have no authentication at all, including my own ham-mcp</td>
+</tr>
+<tr>
+<td><strong>8.5%</strong></td>
+<td>use OAuth</td>
+</tr>
+</tbody>
+</table>
+<p>These numbers will have moved; the lesson hasn't.</p>
+<h2>Where to start</h2>
+<ol>
+<li><strong>Vendor-maintained servers first:</strong> the Filesystem server, GitHub's official MCP server, and cloud providers' documentation servers.</li>
+<li><strong>Add community servers only once you can read their code</strong> and know what they can reach.</li>
+<li><strong>Give each server the least access it needs</strong>: one folder, not your home directory; read-only where possible.</li>
+<li>Not every AI environment allows MCP connections. Check your tool's connector settings.</li>
+</ol>
+</section>
+<section class="doc" id="github-setup">
+<h1>Step-by-step: from idea to a shared GitHub project</h1>
+<p>This walks you through setting up Git and GitHub, building in a local folder with your AI companion, and publishing from the terminal.</p>
+<h2>Step 1: Create your online hub</h2>
+<ol>
+<li>Create a free account at <a href="https://github.com">github.com</a>.</li>
+<li>Install the official <strong>GitHub CLI</strong>:
+   - Mac (Homebrew): <code>brew install gh</code>
+   - Windows or Linux: download from <a href="https://cli.github.com">cli.github.com</a></li>
+<li>In a terminal (Terminal, PowerShell or Command Prompt), run:</li>
+</ol>
+<p><code>bash
+   gh auth login</code></p>
+<p>Follow the prompts to sign in through your browser. No passwords typed into the terminal.</p>
+<h2>Step 2: Protect your email address</h2>
+<p>Before your first commit, set Git to use your GitHub <strong>noreply</strong> address. Find it in GitHub <strong>Settings → Emails</strong>:</p>
+<pre><code class="language-bash">git config --global user.name &quot;Your Name, CALL&quot;
+git config --global user.email &quot;1234567+yourname@users.noreply.github.com&quot;
+</code></pre>
+<p>While you're there, turn on <strong>"Block command line pushes that expose my email."</strong></p>
+<h2>Step 3: Start a project folder</h2>
+<pre><code class="language-bash">mkdir ~/my-ham-radio-project
+cd ~/my-ham-radio-project
+git init -b main
+</code></pre>
+<p>Add a <code>.gitignore</code> so Git skips local clutter:</p>
+<pre><code class="language-text">.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+</code></pre>
+<h2>Step 4: Build with your AI, in that folder</h2>
+<ol>
+<li>Open the <strong>Claude desktop app</strong> and point it at <code>~/my-ham-radio-project</code>.</li>
+<li>Attach your source material: the rules, a datasheet, a sample log.</li>
+<li>Start up the <a href="#prompting">staircase</a> with step 1. For example:</li>
+</ol>
+<blockquote>
+<p>Ask me clarifying questions before you write any code. I want a Python script named <code>log_parser.py</code> in this folder that reads the Cabrillo log <code>contest.log</code> and prints the number of contacts per band.</p>
+</blockquote>
+<ol start="4">
+<li>When something breaks, give it the evidence:</li>
+</ol>
+<blockquote>
+<p>I ran the script and got this error: [paste]. Find the root cause and fix <code>log_parser.py</code> in place.</p>
+</blockquote>
+<ol start="5">
+<li>Ask for a README and a CHANGELOG as you go, not at the end.</li>
+</ol>
+<h2>Step 5: Publish to GitHub</h2>
+<p>Start private; make it public when you're ready to share.</p>
+<pre><code class="language-bash">gh repo create my-ham-radio-project --private --source=. --remote=origin
+git add .
+git commit -m &quot;First working log parser&quot;
+git push -u origin main
+</code></pre>
+<p>After that, each update is:</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;Describe what changed and why&quot;
+git push
+</code></pre>
+<p>To share later: repository <strong>Settings → General → Danger Zone → Change visibility</strong>. To share privately, add collaborators under <strong>Settings → Collaborators</strong>.</p>
+<h2>Step 6 (optional): Free web hosting with GitHub Pages</h2>
+<p>If you built a web page or dashboard (like <a href="https://github.com/rusk2ua/nyqp-dashboard">nyqp-dashboard</a>):</p>
+<ol>
+<li>Put the web files (<code>index.html</code> and friends) in a <code>docs/</code> folder.</li>
+<li>Add an empty <code>docs/.nojekyll</code> file so GitHub serves the files as they are:</li>
+</ol>
+<p><code>bash
+   touch docs/.nojekyll
+   git add docs/
+   git commit -m "Add web page"
+   git push</code></p>
+<ol start="3">
+<li>On GitHub: <strong>Settings → Pages → Build and deployment</strong>, source <strong>Deploy from a branch</strong>, branch <strong>main</strong>, folder <strong>/docs</strong>. Save.</li>
+<li>A minute or so later it's live at <code>https://your-username.github.io/my-ham-radio-project/</code>.</li>
+</ol>
+<p>On a free GitHub account, Pages needs a public repository, and the published site is public.</p>
+<h2>Connecting Claude to GitHub</h2>
+<p>You can also connect Claude to your GitHub account so it can read and update your repositories directly. Ask Claude: "How do I connect you to my GitHub account?" and follow the current instructions for your plan. See also GitHub's <a href="https://docs.github.com/en/get-started">getting started docs</a>.</p>
+</section>
+<section class="doc" id="faq">
+<h1>Common questions</h1>
+<p><strong>"Doesn't AI just produce slop? It can't write real radio software."</strong>
+Ask a chatbot with no context and you'll often get exactly that. Give it the rules document, the datasheet and a sample log, build in small steps, and check the output against those sources, and you get tools you can trust on contest weekend. The difference is curation and verification.</p>
+<p><strong>"Isn't this cheating? Real hams write their own code."</strong>
+Hams didn't stop building when we moved from tubes to microchips. AI handles the syntax and typing. The system design, the testing and the judgment about whether it's right are still yours.</p>
+<p><strong>"Do I need to pay?"</strong>
+The free tiers are capable enough for a first project. Paid plans (roughly $20 a month at the entry level) make sense once you're running bigger multi-file projects or hitting usage limits. Check current pricing for your tool.</p>
+<p><strong>"What about my private logs?"</strong>
+Work in a local folder and give the AI only the files the task needs. Be aware that whatever the AI reads is sent to the model to be processed, so check your account's data and privacy settings, and keep anything sensitive out of the folder. MCP servers you run yourself let you control exactly what the AI can reach; see <a href="#mcp">MCP safety</a>.</p>
+<p><strong>"I'm not a programmer. Can I really do this?"</strong>
+Yes. I'm not one either. Describe what you want the output to look like and where it should run, and let the model choose the libraries. Your job is knowing what "right" looks like.</p>
+<p><strong>"Which tool should I start with?"</strong>
+See <a href="#workbench">the workbench</a>. I use Claude for nearly everything now.</p>
+</section>
+</main>
+<footer><div class="wrap">
+<div>Rus Healy, K2UA · <a href="https://10ghzdx.com">10ghzdx.com</a> · <a href="https://github.com/rusk2ua">github.com/rusk2ua</a> · contact via <a href="https://www.qrz.com/db/K2UA">QRZ.com</a></div>
+<div>Version 2026.10.22 · built from the Markdown in <a href="https://github.com/rusk2ua/hamradiogenai/tree/main/guide">guide/</a></div>
+</div></footer>
+<script>
+document.querySelectorAll('pre').forEach(function(pre){
+  var wrap=document.createElement('div');wrap.className='codewrap';
+  pre.parentNode.insertBefore(wrap,pre);wrap.appendChild(pre);
+  var b=document.createElement('button');b.className='copy';b.type='button';b.textContent='Copy';
+  b.addEventListener('click',function(){
+    var t=pre.innerText;
+    function done(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1500)}
+    if(navigator.clipboard){navigator.clipboard.writeText(t).then(done,function(){})}
+  });
+  wrap.appendChild(b);
+});
+document.querySelectorAll('section.doc table').forEach(function(t){
+  var w=document.createElement('div');w.className='tbl';t.parentNode.insertBefore(w,t);w.appendChild(t);
+});
+</script>
+</body>
+</html>
