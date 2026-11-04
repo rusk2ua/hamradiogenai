@@ -68,6 +68,7 @@ footer a{color:var(--amber)}
 <a class="link" href="#prompting">Prompting</a>
 <a class="link" href="#prompts">Prompt library</a>
 <a class="link" href="#projects">Projects</a>
+<a class="link" href="#lessons">Field notes</a>
 <a class="link" href="#good-repo-checklist">Checklist</a>
 <a class="link" href="#mcp">MCP safety</a>
 <a class="link" href="#github-setup">Get started</a>
@@ -114,6 +115,7 @@ footer a{color:var(--amber)}
 <li>write down what you haven't verified yet</li>
 </ul>
 <p>Two real examples from <a href="https://github.com/rusk2ua/10ghz-log-analyzer">10ghz-log-analyzer</a>: a blank spreadsheet row that was forward-filled into a phantom duplicate QSO (fixed in v1.5.1), and band multipliers above 122 GHz that didn't match section 5.2 of the rules (fixed in v1.6.1). Both looked fine at a glance. Both were caught by checking against the rules and real logs.</p>
+<p>More real examples, and what each one teaches, are in the <a href="#lessons">field notes</a>.</p>
 </section>
 <section class="doc" id="workbench">
 <h1>The workbench (October 2026)</h1>
@@ -318,6 +320,34 @@ Find the root cause before changing anything. Fix it in place, add a test
 that would have caught it, and add a CHANGELOG entry that says who is
 affected.
 </code></pre>
+<h2>9. Analyze a design, and keep the analysis honest</h2>
+<p><em>Pattern behind <a href="https://github.com/rusk2ua/offset-microwave-dish-comparisons">offset-microwave-dish-comparisons</a>.</em></p>
+<pre><code class="language-text">I want to know how much gain [DISHES / ANTENNAS / FEEDS] really give on
+[BANDS, exact frequencies, e.g. 10.368 and 24.192 GHz], and what eats into
+it. References attached: [papers, datasheets, measured data].
+
+Write a small Python calculator plus a script that regenerates every table
+and chart in the README from it. Add tests that pin results to values I can
+check by hand or from the references, including a test for any common
+formula mistake you know of. Add CI that runs the tests and fails if the
+README tables are out of date.
+
+List every assumption in an &quot;Assumptions and limits&quot; section. Where the
+references disagree, say so instead of picking one silently.
+</code></pre>
+<h2>10. Run the numbers before you choose the build</h2>
+<p><em>Pattern behind <a href="https://github.com/rusk2ua/portable-10ghz-eme">portable-10ghz-eme</a>.</em></p>
+<p>```text
+Goal: [e.g. 10 GHz EME contacts with my portable station].
+Station: [dish, power, noise figure, polarization, IF radio, mount,
+parts on hand]. Target stations: [what the other end typically has].</p>
+<p>Before suggesting any hardware, do the link budget and tell me how much
+margin there is and which factors matter most. Then answer my open
+question, [e.g. is hand pointing good enough or do I need a rotator?],
+from those numbers.</p>
+<p>If more than one build makes sense, write each as its own step-by-step
+doc with a parts list and build time, plus a comparison table in the
+README and your recommendation.</p>
 </section>
 <section class="doc" id="projects">
 <h1>Project gallery</h1>
@@ -335,17 +365,27 @@ affected.
 <tr>
 <td><a href="https://github.com/rusk2ua/10ghz-log-analyzer">10ghz-log-analyzer</a></td>
 <td>Scores ARRL 10 GHz and Up logs, writes Cabrillo, plots points by compass direction and band</td>
-<td><strong>Ground in the rules.</strong> Scoring tied to the rules document; fixes documented with who they affect</td>
+<td><strong>Ground in the rules.</strong> Scoring tied to the rules document; every fix documented with who it affects (see <a href="#lessons">field notes</a>)</td>
 </tr>
 <tr>
 <td><a href="https://github.com/rusk2ua/10ghz-web-logger-analyzer">10ghz-web-logger-analyzer</a> · <a href="https://10ghz.microwavedx.com">live site</a></td>
 <td>Web edition: upload a log, get Cabrillo, reports, polar plots and maps in one .zip</td>
-<td><strong>Engine before dashboard.</strong> Runs the CLI tools unmodified, with a web-vs-CLI parity test</td>
+<td><strong>Engine before dashboard.</strong> Runs the CLI tools unmodified, with a web-vs-CLI parity test, CI on every push, and a deploy script that refuses unsafe changes</td>
 </tr>
 <tr>
 <td><a href="https://github.com/rusk2ua/grid-mapper">grid-mapper</a></td>
-<td>Maidenhead grid density and path maps from a Cabrillo log, per band</td>
+<td>Maidenhead grid density and path maps from a Cabrillo log, per band, with an optional street-map underlay</td>
 <td><strong>Describe the output, not the libraries.</strong> One command, automatic scaling</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rusk2ua/offset-microwave-dish-comparisons">offset-microwave-dish-comparisons</a></td>
+<td>How much gain 0.6–0.9 m offset and prime-focus dishes really give on 10.368 and 24.192 GHz: efficiency, illumination, blockage, surface error, and the W1GHZ dual-band feed</td>
+<td><strong>Pin the math with tests, regenerate the docs.</strong> A test guards the classic "efficiency squared" gain-formula mistake, and CI fails if the README tables drift from the code</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rusk2ua/portable-10ghz-eme">portable-10ghz-eme</a></td>
+<td>10 GHz moonbounce with a 76 cm portable dish and Q65-60D: the link budget, then two pointing builds (manual sighting, or Mini-RAS auto-tracking)</td>
+<td><strong>Link budget first, then decide the build.</strong> The numbers showed a 2.7° beam makes hand pointing realistic, so the rotator became an option rather than a requirement</td>
 </tr>
 <tr>
 <td><a href="https://github.com/rusk2ua/eme-calculator-project">eme-calculator-project</a></td>
@@ -376,8 +416,8 @@ affected.
 </tr>
 <tr>
 <td><a href="https://github.com/rusk2ua/remkey">remkey</a></td>
-<td>Remote paddle CW for an IC-7610 driving a tower-top 10 GHz transverter, plus LoRa tower telemetry</td>
-<td><strong>Tests before the tower.</strong> CI on three OSes, firmware simulation, "not yet run on hardware" stated up front</td>
+<td>Remote paddle CW for an IC-7610 driving a tower-top 10 GHz transverter, plus LoRa tower telemetry. Now running end to end on the real station over Tailscale</td>
+<td><strong>Tests before the tower.</strong> CI on three OSes and firmware simulation first; then real-station findings (VPN coexistence, a USB unplug mid-transmit) written straight back into the docs</td>
 </tr>
 <tr>
 <td><a href="https://github.com/rusk2ua/adalm-pluto-resources">adalm-pluto-resources</a></td>
@@ -418,6 +458,74 @@ affected.
 </tr>
 </tbody>
 </table>
+<h2>In progress (not yet public)</h2>
+<ul>
+<li><strong>ESP8266 moon tracker</strong> for a 1296 MHz EME dish: a $3 D1 mini plus a GPS module computes the moon's position and drives a Green Heron RT-21 Az-El controller directly, with an OLED and a web display, replacing a PC running PstRotator.</li>
+<li><strong>ESP8266 project ideas:</strong> a backlog of low-cost ESP8266 builds for radio, optical links, station automation and telemetry.</li>
+</ul>
+</section>
+<section class="doc" id="lessons">
+<h1>Field notes: bugs caught, and how</h1>
+<p>Real defects from the projects in the <a href="#projects">gallery</a>. Every one looked fine at a glance. None was caught by reading code; each was caught by checking against a primary source, a real log, real hardware, or a test. This is what "be the control operator" means in practice.</p>
+<h2>Caught against the rules and real logs</h2>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>What was wrong</th>
+<th>How it was caught</th>
+<th>The fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10ghz-log-analyzer v1.5.1</td>
+<td>A blank spreadsheet row was forward-filled into a phantom duplicate QSO</td>
+<td>Comparing the output with the actual log</td>
+<td>Forward-fill only date, band, grid and time; never invent a call sign</td>
+</tr>
+<tr>
+<td>10ghz-log-analyzer v1.6.1</td>
+<td>Bands above 122 GHz scored 6x and 10x; the rules give every band from 122 GHz up 5x</td>
+<td>Checking the score against rules section 5.2</td>
+<td>Multipliers corrected, and a test now pins the table to the rules</td>
+</tr>
+<tr>
+<td>10ghz-log-analyzer v1.6.2</td>
+<td>A "142 GHz" band with Cabrillo code <code>142G</code>. There is no such band: the allocation is 134 GHz, code <code>134G</code></td>
+<td>Reviewing a slide about the previous bug, two nights before a talk</td>
+<td>Renamed everywhere; old logs that say <code>142</code> still load and score correctly</td>
+</tr>
+<tr>
+<td>10ghz-log-analyzer v1.6.3</td>
+<td>Every Cabrillo file said it was made by v1.5.3, whatever the release</td>
+<td>Reading a generated log's header</td>
+<td>One version number, used everywhere</td>
+</tr>
+</tbody>
+</table>
+<p>The pattern: a band table, a multiplier, a version string. Small, confident and wrong. <strong>You are the domain expert, and this is exactly where you'll notice.</strong></p>
+<h2>Caught by tests and CI</h2>
+<ul>
+<li><strong>The gain formula.</strong> Written as <code>(η·π·D/λ)²</code> instead of <code>η·(π·D/λ)²</code>, the dish gain equation squares the efficiency and understates gain by 1.25–1.55 dB. In <a href="https://github.com/rusk2ua/offset-microwave-dish-comparisons">offset-microwave-dish-comparisons</a>, a test named <code>test_efficiency_not_squared</code> guards against it, and CI fails if the README's tables no longer match what the code computes.</li>
+<li><strong>A firmware image that wouldn't compile.</strong> In <a href="https://github.com/rusk2ua/remkey">remkey</a>, CI builds every Arduino image on every push. It caught a break before anyone flashed a board.</li>
+<li><strong>A flaky test that was really a timing race.</strong> remkey's "keyer unplugged mid-transmit" test sometimes failed on slow runners. The cause was the test replugging the keyer before the client had heard PTT drop. The fix was in the test, not the code, plus a per-test timeout so a hung test fails fast and names itself.</li>
+<li><strong>A deploy that could roll itself back.</strong> In <a href="https://github.com/rusk2ua/10ghz-web-logger-analyzer">10ghz-web-logger-analyzer</a>, changing the budget-alert email would make AWS replace two fixed-name budgets, fail, and roll back the whole update. <code>deploy.sh</code> now reuses the existing address and refuses a different one, with tests run against a fake AWS CLI.</li>
+</ul>
+<h2>Caught on real hardware</h2>
+<p>remkey's software passed CI on three operating systems before it touched the radio. Running it on the real station still turned up things no test could:</p>
+<ul>
+<li>A VPN on the shack PC blocked inbound connections on the remote-access network, so the docs now describe running Tailscale alongside NordVPN, with measured latency.</li>
+<li>Unplugging the paddle's USB keyer mid-transmission needed a graceful PTT release and automatic reconnect.</li>
+</ul>
+<p>Each finding went straight back into the README and build plan, so the next builder doesn't hit it.</p>
+<h2>The takeaways</h2>
+<ol>
+<li><strong>Check output against the source,</strong> not against your sense that it looks right.</li>
+<li><strong>When you find a bug, add a test that would have caught it,</strong> and a changelog line that says who's affected.</li>
+<li><strong>Let CI check your docs too,</strong> when they're generated from code.</li>
+<li><strong>Write down what hardware testing teaches you,</strong> in the repo, the same day.</li>
+</ol>
 </section>
 <section class="doc" id="good-repo-checklist">
 <h1>What good looks like: the repo checklist</h1>
@@ -430,6 +538,8 @@ affected.
 <li><strong>Sample data</strong>, so a fresh clone runs immediately</li>
 <li><strong>Tests</strong>, and CI that runs them on every push</li>
 <li><strong>Tests that pin the important numbers</strong> to their source: multipliers to the rules, timing to the spec</li>
+<li><strong>When a bug turns up, a test that would have caught it</strong>, added with the fix (<a href="#lessons">field notes</a>)</li>
+<li><strong>Generated docs checked in CI</strong>: if README tables come from code, CI fails when they drift</li>
 <li><strong>No secrets</strong>: placeholders for credentials, and a <code>.gitignore</code> for local files, virtual environments and <code>.DS_Store</code></li>
 <li><strong>Commits use your GitHub noreply email</strong>, never your personal one</li>
 <li><strong>Link restricted datasheets</strong>; don't copy them into the repo</li>
@@ -589,7 +699,7 @@ See <a href="#workbench">the workbench</a>. I use Claude for nearly everything n
 </main>
 <footer><div class="wrap">
 <div>Rus Healy, K2UA · <a href="https://10ghzdx.com">10ghzdx.com</a> · <a href="https://github.com/rusk2ua">github.com/rusk2ua</a> · contact via <a href="https://www.qrz.com/db/K2UA">QRZ.com</a></div>
-<div>Version 2026.10.22 · built from the Markdown in <a href="https://github.com/rusk2ua/hamradiogenai/tree/main/guide">guide/</a></div>
+<div>Version 2026.11.04 · built from the Markdown in <a href="https://github.com/rusk2ua/hamradiogenai/tree/main/guide">guide/</a></div>
 </div></footer>
 <script>
 document.querySelectorAll('pre').forEach(function(pre){

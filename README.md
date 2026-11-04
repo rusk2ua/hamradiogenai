@@ -3,7 +3,7 @@
 **Building and sharing real Amateur Radio projects with generative AI**
 By Rus Healy, K2UA · Companion to *From Soldering Irons to Syntax*, Microwave Update 2026
 
-**Website:** <https://rusk2ua.github.io/hamradiogenai/> · **Landing page:** <https://10ghzdx.com/mud2026> · **Version:** 2026.10.22 ([changelog](CHANGELOG.md))
+**Website:** <https://rusk2ua.github.io/hamradiogenai/> · **Landing page:** <https://10ghzdx.com/mud2026> · **Version:** 2026.11.04 ([changelog](CHANGELOG.md))
 
 This is a living resource. The paper in the Microwave Update 2026 Proceedings is the August 2026 snapshot; this repository is where the material keeps evolving.
 
@@ -16,8 +16,9 @@ This is a living resource. The paper in the Microwave Update 2026 Proceedings is
 | Understand the approach | [The grounded builder](guide/principles.md): curate, isolate, stay the control operator |
 | Pick your tools | [The workbench, October 2026](guide/workbench.md) |
 | Write prompts that work | [The staircase and the anatomy of a prompt](guide/prompting.md) |
-| Build something tonight | [Prompt library](guide/prompts.md): eight templates you can adapt |
-| See real examples | [Project gallery](guide/projects.md): 12 public projects and the technique each one shows |
+| Build something tonight | [Prompt library](guide/prompts.md): ten templates you can adapt |
+| See real examples | [Project gallery](guide/projects.md): 14 public projects and the technique each one shows |
+| Learn from real bugs | [Field notes](guide/lessons.md): defects caught against the rules, by tests, and on real hardware |
 | Check your own repo | [What good looks like](guide/good-repo-checklist.md) |
 | Connect AI to your data | [MCP, safely](guide/mcp.md) |
 | Set up Git and GitHub | [Step-by-step setup guide](guide/github-setup.md) |

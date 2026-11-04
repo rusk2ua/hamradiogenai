@@ -2,6 +2,17 @@
 
 Versions are date-based (`YYYY.MM.DD`).
 
+## [2026.11.04]
+
+### Added
+- Project gallery: offset-microwave-dish-comparisons (10/24 GHz dish gain, surface error, W1GHZ dual-band feed) and portable-10ghz-eme (link budget and two pointing builds for 10 GHz moonbounce), plus an "In progress" list (ESP8266 moon tracker for 1296 EME, ESP8266 project ideas).
+- Field notes page: real bugs from the gallery projects and how each was caught (rules and real logs, tests and CI, real hardware).
+- Prompt library templates 9 (analyze a design, with tests and regenerated docs) and 10 (run the numbers before choosing the build).
+- Repo checklist: add a test with every bug fix; check generated docs in CI.
+
+### Changed
+- Gallery entries for remkey (now running end to end on the real station over Tailscale), 10ghz-web-logger-analyzer (CI and a safer deploy script) and grid-mapper (street-map underlay).
+
 ## [2026.10.22] - Microwave Update 2026 edition
 
 ### Added

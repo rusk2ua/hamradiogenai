@@ -133,3 +133,40 @@ Find the root cause before changing anything. Fix it in place, add a test
 that would have caught it, and add a CHANGELOG entry that says who is
 affected.
 ```
+
+## 9. Analyze a design, and keep the analysis honest
+
+*Pattern behind [offset-microwave-dish-comparisons](https://github.com/rusk2ua/offset-microwave-dish-comparisons).*
+
+```text
+I want to know how much gain [DISHES / ANTENNAS / FEEDS] really give on
+[BANDS, exact frequencies, e.g. 10.368 and 24.192 GHz], and what eats into
+it. References attached: [papers, datasheets, measured data].
+
+Write a small Python calculator plus a script that regenerates every table
+and chart in the README from it. Add tests that pin results to values I can
+check by hand or from the references, including a test for any common
+formula mistake you know of. Add CI that runs the tests and fails if the
+README tables are out of date.
+
+List every assumption in an "Assumptions and limits" section. Where the
+references disagree, say so instead of picking one silently.
+```
+
+## 10. Run the numbers before you choose the build
+
+*Pattern behind [portable-10ghz-eme](https://github.com/rusk2ua/portable-10ghz-eme).*
+
+```text
+Goal: [e.g. 10 GHz EME contacts with my portable station].
+Station: [dish, power, noise figure, polarization, IF radio, mount,
+parts on hand]. Target stations: [what the other end typically has].
+
+Before suggesting any hardware, do the link budget and tell me how much
+margin there is and which factors matter most. Then answer my open
+question, [e.g. is hand pointing good enough or do I need a rotator?],
+from those numbers.
+
+If more than one build makes sense, write each as its own step-by-step
+doc with a parts list and build time, plus a comparison table in the
+README and your recommendation.

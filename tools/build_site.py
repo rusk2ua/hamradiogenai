@@ -28,6 +28,7 @@ PAGES = [
     ("prompting", "Prompting"),
     ("prompts", "Prompt library"),
     ("projects", "Projects"),
+    ("lessons", "Field notes"),
     ("good-repo-checklist", "Checklist"),
     ("mcp", "MCP safety"),
     ("github-setup", "Get started"),

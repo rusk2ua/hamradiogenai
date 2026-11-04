@@ -9,6 +9,8 @@ Every project in the [gallery](projects.md) aims for this. None of it is hard, a
 - [ ] **Sample data**, so a fresh clone runs immediately
 - [ ] **Tests**, and CI that runs them on every push
 - [ ] **Tests that pin the important numbers** to their source: multipliers to the rules, timing to the spec
+- [ ] **When a bug turns up, a test that would have caught it**, added with the fix ([field notes](lessons.md))
+- [ ] **Generated docs checked in CI**: if README tables come from code, CI fails when they drift
 - [ ] **No secrets**: placeholders for credentials, and a `.gitignore` for local files, virtual environments and `.DS_Store`
 - [ ] **Commits use your GitHub noreply email**, never your personal one
 - [ ] **Link restricted datasheets**; don't copy them into the repo

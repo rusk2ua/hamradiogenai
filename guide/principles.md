@@ -30,3 +30,5 @@ The AI writes syntax. **Logic, error boundaries and compliance stay yours.** You
 - write down what you haven't verified yet
 
 Two real examples from [10ghz-log-analyzer](https://github.com/rusk2ua/10ghz-log-analyzer): a blank spreadsheet row that was forward-filled into a phantom duplicate QSO (fixed in v1.5.1), and band multipliers above 122 GHz that didn't match section 5.2 of the rules (fixed in v1.6.1). Both looked fine at a glance. Both were caught by checking against the rules and real logs.
+
+More real examples, and what each one teaches, are in the [field notes](lessons.md).
