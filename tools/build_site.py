@@ -57,7 +57,12 @@ def rewrite_links(html: str) -> str:
 
 
 def main() -> int:
-    md = markdown.Markdown(extensions=["tables", "fenced_code", "sane_lists"])
+    md = markdown.Markdown(
+        extensions=["tables", "pymdownx.highlight", "pymdownx.superfences", "sane_lists", "md_in_html"],
+        # superfences renders code blocks nested in lists; plain <pre><code>,
+        # no syntax coloring, matches the site's own code style.
+        extension_configs={"pymdownx.highlight": {"use_pygments": False}},
+    )
     sections = []
     for slug, _label in PAGES:
         path = GUIDE / f"{slug}.md"

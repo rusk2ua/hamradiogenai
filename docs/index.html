@@ -53,6 +53,11 @@ pre{background:var(--night);color:#E6ECF3;padding:18px 18px;border-radius:12px;o
 pre code{background:none;color:inherit;padding:0;font-size:14px;line-height:1.55;white-space:pre}
 button.copy{position:absolute;top:8px;right:8px;font:600 12px 'IBM Plex Sans',Arial,sans-serif;background:var(--night2);color:var(--amber);border:1px solid #3A4E6B;border-radius:7px;padding:5px 10px;cursor:pointer}
 button.copy:hover{border-color:var(--amber)}
+details{background:#FBF7EE;border:1.5px solid var(--line);border-radius:12px;margin:14px 0;padding:0 20px}
+details[open]{padding-bottom:12px}
+summary{cursor:pointer;padding:14px 0;font:700 19px 'Space Grotesk',Arial,sans-serif;color:var(--ink)}
+summary:hover{color:var(--rust)}
+section.doc details h4{font:700 18px/1.3 'Space Grotesk',Arial,sans-serif;color:var(--ink);margin:22px 0 6px}
 ul li,ol li{margin:4px 0}
 footer{background:var(--night);color:var(--sky);padding:36px 16px;font-size:14px}
 footer .wrap{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between}
@@ -270,7 +275,7 @@ footer a{color:var(--amber)}
 <hr />
 <h2>1. Score a contest from the official rules</h2>
 <p><em>Pattern behind <a href="https://github.com/rusk2ua/10ghz-log-analyzer">10ghz-log-analyzer</a>.</em></p>
-<pre><code class="language-text">I'm a ham radio contester, not a developer. I want a tool that scores my
+<pre class="highlight"><code class="language-text">I'm a ham radio contester, not a developer. I want a tool that scores my
 [CONTEST NAME] log so I can check my claimed score before I submit it.
 Please write clear, well-commented code that I can follow.
 
@@ -283,46 +288,42 @@ Start with step 1 only: read the log and print the number of QSOs per band.
 Then we'll add scoring, then reports, one step at a time.
 
 When we get to scoring, add a test that pins every multiplier and point
-value to the rules section it came from.
-</code></pre>
+value to the rules section it came from.</code></pre>
 <h2>2. Map grids worked from a log</h2>
 <p><em>Pattern behind <a href="https://github.com/rusk2ua/grid-mapper">grid-mapper</a>.</em></p>
-<pre><code class="language-text">I want a map of the Maidenhead grid squares in a contest log, one image
+<pre class="highlight"><code class="language-text">I want a map of the Maidenhead grid squares in a contest log, one image
 per band, with darker squares for more contacts and labels only on grids
 I worked. Input is a Cabrillo log (sample attached). It should run with one
 command on Mac or Windows. I don't know which mapping libraries to use;
 pick sensible ones and tell me why. Size the map automatically to the area
-the log covers.
-</code></pre>
+the log covers.</code></pre>
 <h2>3. Revise someone else's firmware, with credit</h2>
 <p><em>Pattern behind <a href="https://github.com/rusk2ua/ve2ug-optical-beacon-project">ve2ug-optical-beacon-project</a>.</em></p>
-<pre><code class="language-text">Attached is [AUTHOR, CALL]'s original sketch and documentation for
+<pre class="highlight"><code class="language-text">Attached is [AUTHOR, CALL]'s original sketch and documentation for
 [PROJECT]. Review the firmware for timing and robustness problems and
 propose fixes, but don't change the core behavior without asking.
 
 Then set it up as a GitHub repo:
 - README with a version table and a test-status table (what's verified,
   what isn't)
-- CHANGELOG with &quot;Added&quot;, &quot;Changed&quot;, &quot;Unchanged&quot; (what's still the original
+- CHANGELOG with "Added", "Changed", "Unchanged" (what's still the original
   author's) and the reason for each change
 - credit the original author everywhere the design is described
 - no real credentials in the code; placeholders with a warning
-Convert the original PDF docs to Markdown under docs/.
-</code></pre>
+Convert the original PDF docs to Markdown under docs/.</code></pre>
 <h2>4. Turn a design decision into a calculator</h2>
 <p><em>Pattern behind <code>tools/tia_calc.py</code> in <a href="https://github.com/rusk2ua/optical-receive-chain">optical-receive-chain</a>.</em></p>
-<pre><code class="language-text">I'm building a photodiode transimpedance amplifier: [PHOTODIODE] at
+<pre class="highlight"><code class="language-text">I'm building a photodiode transimpedance amplifier: [PHOTODIODE] at
 [BIAS], [OP-AMP], target flat response [F1] to [F2]. Datasheets attached.
 
 Don't just tell me Rf and Cf. Write a small Python script, standard library
 only, that calculates stability margin, bandwidth, noise and DC headroom,
 with presets for [OP-AMP LIST], and prints a table. Say in the output which
-numbers are ballpark datasheet values I should measure on my own build.
-</code></pre>
+numbers are ballpark datasheet values I should measure on my own build.</code></pre>
 <p>Swap in your own problem: path loss and link budget between two grids, rain fade at 24 GHz, dish wind load, feed offset.</p>
 <h2>5. Specify a station system before building it</h2>
 <p><em>Pattern behind <a href="https://github.com/rusk2ua/remkey">remkey</a>.</em></p>
-<pre><code class="language-text">I want to [GOAL, e.g. send CW with my own paddle to my shack remotely].
+<pre class="highlight"><code class="language-text">I want to [GOAL, e.g. send CW with my own paddle to my shack remotely].
 My station: [RIG, interfaces, what runs on the shack PC, how I reach it
 remotely, what I won't change]. Constraints: [safety, latency, budget,
 parts on hand].
@@ -333,21 +334,19 @@ transmitting), a parts list, and a phased build and test plan. Ask me
 about anything you'd otherwise assume.
 
 When we write code: tests that run without hardware, a simulation of the
-firmware if possible, and CI on every push.
-</code></pre>
+firmware if possible, and CI on every push.</code></pre>
 <h2>6. Put a web front end on a working command-line tool</h2>
 <p><em>Pattern behind <a href="https://github.com/rusk2ua/10ghz-web-logger-analyzer">10ghz-web-logger-analyzer</a>.</em></p>
-<pre><code class="language-text">My command-line tools [REPO LINKS] work and are tested. Build a web front
+<pre class="highlight"><code class="language-text">My command-line tools [REPO LINKS] work and are tested. Build a web front
 end that runs them unmodified (vendor them in with a sync script; never
 hand-edit the copies). Users upload a log and download results.
 
 Add a test proving the web app's outputs match the CLI's for the same log.
 Deploy target: [my own computer only / AWS serverless / GitHub Pages
-static site]. Give me a local mode that runs without the cloud.
-</code></pre>
+static site]. Give me a local mode that runs without the cloud.</code></pre>
 <h2>7. Your house rules (set once)</h2>
 <p>Put this in a project's instructions, or ask Claude to remember it.</p>
-<pre><code class="language-text">House rules for all my GitHub projects:
+<pre class="highlight"><code class="language-text">House rules for all my GitHub projects:
 - Commit as [NAME] &lt;[ID]+[USER]@users.noreply.github.com&gt;. Never use my
   personal email.
 - Versioning: [date-based YYYY.MM.DD / semantic].
@@ -355,21 +354,19 @@ static site]. Give me a local mode that runs without the cloud.
 - README always has: what it is, how to run it, current version, and what
   has and hasn't been tested.
 - No secrets in the repo. Placeholders plus .gitignore.
-- Credit upstream authors. Link restricted datasheets; don't copy them.
-</code></pre>
+- Credit upstream authors. Link restricted datasheets; don't copy them.</code></pre>
 <h2>8. Report a bug so it gets fixed properly</h2>
-<pre><code class="language-text">I ran [COMMAND] on [INPUT, attached] and got this:
+<pre class="highlight"><code class="language-text">I ran [COMMAND] on [INPUT, attached] and got this:
 
 [PASTE THE FULL ERROR OR WRONG OUTPUT]
 
 Expected: [WHAT THE RULES / DATASHEET SAY IT SHOULD BE].
 Find the root cause before changing anything. Fix it in place, add a test
 that would have caught it, and add a CHANGELOG entry that says who is
-affected.
-</code></pre>
+affected.</code></pre>
 <h2>9. Analyze a design, and keep the analysis honest</h2>
 <p><em>Pattern behind <a href="https://github.com/rusk2ua/offset-microwave-dish-comparisons">offset-microwave-dish-comparisons</a>.</em></p>
-<pre><code class="language-text">I want to know how much gain [DISHES / ANTENNAS / FEEDS] really give on
+<pre class="highlight"><code class="language-text">I want to know how much gain [DISHES / ANTENNAS / FEEDS] really give on
 [BANDS, exact frequencies, e.g. 10.368 and 24.192 GHz], and what eats into
 it. References attached: [papers, datasheets, measured data].
 
@@ -379,9 +376,8 @@ check by hand or from the references, including a test for any common
 formula mistake you know of. Add CI that runs the tests and fails if the
 README tables are out of date.
 
-List every assumption in an &quot;Assumptions and limits&quot; section. Where the
-references disagree, say so instead of picking one silently.
-</code></pre>
+List every assumption in an "Assumptions and limits" section. Where the
+references disagree, say so instead of picking one silently.</code></pre>
 <h2>10. Run the numbers before you choose the build</h2>
 <p><em>Pattern behind <a href="https://github.com/rusk2ua/portable-10ghz-eme">portable-10ghz-eme</a>.</em></p>
 <p>```text
@@ -596,8 +592,7 @@ README and your recommendation.</p>
 </ul>
 <h2>Protect your email before your first commit</h2>
 <p>Commits are public and permanent. Find your noreply address in GitHub <strong>Settings → Emails</strong> (it looks like <code>1234567+yourname@users.noreply.github.com</code>), then:</p>
-<pre><code class="language-bash">git config --global user.email &quot;1234567+yourname@users.noreply.github.com&quot;
-</code></pre>
+<pre class="highlight"><code class="language-bash">git config --global user.email "1234567+yourname@users.noreply.github.com"</code></pre>
 <p>In the same Emails settings you can turn on <strong>"Block command line pushes that expose my email."</strong> Then tell your AI tool to use the noreply address for every commit.</p>
 </section>
 <section class="doc" id="mcp">
@@ -664,84 +659,173 @@ README and your recommendation.</p>
 </blockquote>
 <p>Two good habits to ask for on day one: start projects <strong>private</strong> and make them public only when you mean to share, and use your GitHub <strong>noreply</strong> email address so your personal one never appears in public.</p>
 <h2>The manual way: every step yourself</h2>
-<p>If you'd rather do it yourself, or want to see what Claude is doing for you, here is the whole process: setting up Git and GitHub, building in a local folder with your AI companion, and publishing from the terminal.</p>
-<h3>Step 1: Create your online hub</h3>
+<p>If you'd rather do it yourself, or want to see what Claude is doing for you, here is the whole process: installing Git and the GitHub command-line tool, building in a local folder with your AI companion, and publishing. Open the section for your computer. Each one is complete on its own.</p>
+<details>
+<summary><b>Windows (PowerShell)</b></summary>
+<h4>Step 1: Install the tools and sign in</h4>
 <ol>
 <li>Create a free account at <a href="https://github.com">github.com</a>.</li>
-<li>Install the official <strong>GitHub CLI</strong>:
-   - Mac (Homebrew): <code>brew install gh</code>
-   - Windows or Linux: download from <a href="https://cli.github.com">cli.github.com</a></li>
-<li>In a terminal (Terminal, PowerShell or Command Prompt), run:</li>
+<li>Open <strong>PowerShell</strong>: click Start, type <code>PowerShell</code>, and open <strong>Windows PowerShell</strong> (or <strong>Terminal</strong>, which opens PowerShell). Use it rather than the old Command Prompt.</li>
+<li>
+<p>Install <strong>Git</strong> and the official <strong>GitHub CLI</strong> with Windows' built-in installer, <code>winget</code>:</p>
+<pre class="highlight"><code class="language-powershell">winget install --id Git.Git -e --source winget
+winget install --id GitHub.cli -e --source winget</code></pre>
+</li>
+<li>
+<p><strong>Close PowerShell and open it again</strong> so it finds the new commands. Then sign in:</p>
+<pre class="highlight"><code class="language-powershell">gh auth login</code></pre>
+<p>Follow the prompts to sign in through your browser. No passwords typed into PowerShell.</p>
+</li>
 </ol>
-<p><code>bash
-   gh auth login</code></p>
-<p>Follow the prompts to sign in through your browser. No passwords typed into the terminal.</p>
-<h3>Step 2: Protect your email address</h3>
+<h4>Step 2: Protect your email address</h4>
 <p>Before your first commit, set Git to use your GitHub <strong>noreply</strong> address. Find it in GitHub <strong>Settings → Emails</strong>:</p>
-<pre><code class="language-bash">git config --global user.name &quot;Your Name, CALL&quot;
-git config --global user.email &quot;1234567+yourname@users.noreply.github.com&quot;
-</code></pre>
+<pre class="highlight"><code class="language-powershell">git config --global user.name "Your Name, CALL"
+git config --global user.email "1234567+yourname@users.noreply.github.com"</code></pre>
 <p>While you're there, turn on <strong>"Block command line pushes that expose my email."</strong></p>
-<h3>Step 3: Start a project folder</h3>
-<pre><code class="language-bash">mkdir ~/my-ham-radio-project
+<h4>Step 3: Start a project folder</h4>
+<pre class="highlight"><code class="language-powershell">mkdir $HOME\my-ham-radio-project
+cd $HOME\my-ham-radio-project
+git init -b main
+notepad .gitignore</code></pre>
+<p>Notepad opens a new <code>.gitignore</code> file, which tells Git to skip local clutter. Paste this in, save, and close Notepad:</p>
+<pre class="highlight"><code class="language-text">.venv/
+venv/
+__pycache__/
+*.pyc
+Thumbs.db
+.env</code></pre>
+<h4>Step 4: Build with your AI, in that folder</h4>
+<ol>
+<li>Open the <strong>Claude desktop app</strong> and point it at your <strong>my-ham-radio-project</strong> folder (in your user folder, for example <code>C:\Users\yourname\my-ham-radio-project</code>).</li>
+<li>Attach your source material: the rules, a datasheet, a sample log.</li>
+<li>
+<p>Start up the <a href="#prompting">staircase</a> with step 1. For example:</p>
+<blockquote>
+<p>Ask me clarifying questions before you write any code. I want a Python script named <code>log_parser.py</code> in this folder that reads my Cabrillo log <code>contest.log</code> and prints the number of contacts per band, so I can check my totals before I submit.</p>
+</blockquote>
+</li>
+<li>
+<p>When something breaks, give it the evidence:</p>
+<blockquote>
+<p>I ran the script and got this error: [paste]. Find the root cause and fix <code>log_parser.py</code> in place.</p>
+</blockquote>
+</li>
+<li>
+<p>Ask for a README and a CHANGELOG as you go, not at the end.</p>
+</li>
+</ol>
+<h4>Step 5: Publish to GitHub</h4>
+<p>Start private; make it public when you're ready to share. In PowerShell, in your project folder:</p>
+<pre class="highlight"><code class="language-powershell">gh repo create my-ham-radio-project --private --source=. --remote=origin
+git add .
+git commit -m "First working log parser"
+git push -u origin main</code></pre>
+<p>After that, each update is:</p>
+<pre class="highlight"><code class="language-powershell">git add .
+git commit -m "Describe what changed and why"
+git push</code></pre>
+<p>To share later: repository <strong>Settings → General → Danger Zone → Change visibility</strong>. To share privately, add collaborators under <strong>Settings → Collaborators</strong>.</p>
+<h4>Step 6 (optional): Free web hosting with GitHub Pages</h4>
+<p>If you built a web page or dashboard (like <a href="https://github.com/rusk2ua/nyqp-dashboard">nyqp-dashboard</a>):</p>
+<ol>
+<li>Put the web files (<code>index.html</code> and friends) in a <code>docs</code> folder in your project.</li>
+<li>
+<p>Add an empty <code>.nojekyll</code> file there so GitHub serves the files as they are, and publish:</p>
+<pre class="highlight"><code class="language-powershell">New-Item docs\.nojekyll -ItemType File
+git add docs
+git commit -m "Add web page"
+git push</code></pre>
+</li>
+<li>
+<p>On GitHub: <strong>Settings → Pages → Build and deployment</strong>, source <strong>Deploy from a branch</strong>, branch <strong>main</strong>, folder <strong>/docs</strong>. Save.</p>
+</li>
+<li>A minute or so later it's live at <code>https://your-username.github.io/my-ham-radio-project/</code>.</li>
+</ol>
+<p>On a free GitHub account, Pages needs a public repository, and the published site is public.</p>
+</details>
+<details>
+<summary><b>Mac (Terminal)</b></summary>
+<h4>Step 1: Install the tools and sign in</h4>
+<ol>
+<li>Create a free account at <a href="https://github.com">github.com</a>.</li>
+<li>Open <strong>Terminal</strong>: press Cmd+Space, type <code>Terminal</code>, and press Return.</li>
+<li>
+<p>Install <strong>Homebrew</strong> if you don't have it yet, by following the one-line instructions at <a href="https://brew.sh">brew.sh</a>. Then install <strong>Git</strong> and the official <strong>GitHub CLI</strong>:</p>
+<pre class="highlight"><code class="language-bash">brew install git gh</code></pre>
+</li>
+<li>
+<p>Sign in:</p>
+<pre class="highlight"><code class="language-bash">gh auth login</code></pre>
+<p>Follow the prompts to sign in through your browser. No passwords typed into Terminal.</p>
+</li>
+</ol>
+<h4>Step 2: Protect your email address</h4>
+<p>Before your first commit, set Git to use your GitHub <strong>noreply</strong> address. Find it in GitHub <strong>Settings → Emails</strong>:</p>
+<pre class="highlight"><code class="language-bash">git config --global user.name "Your Name, CALL"
+git config --global user.email "1234567+yourname@users.noreply.github.com"</code></pre>
+<p>While you're there, turn on <strong>"Block command line pushes that expose my email."</strong></p>
+<h4>Step 3: Start a project folder</h4>
+<pre class="highlight"><code class="language-bash">mkdir ~/my-ham-radio-project
 cd ~/my-ham-radio-project
 git init -b main
-</code></pre>
-<p>Add a <code>.gitignore</code> so Git skips local clutter:</p>
-<pre><code class="language-text">.venv/
+touch .gitignore
+open -e .gitignore</code></pre>
+<p>TextEdit opens a new <code>.gitignore</code> file, which tells Git to skip local clutter. Paste this in, save, and close TextEdit:</p>
+<pre class="highlight"><code class="language-text">.venv/
 venv/
 __pycache__/
 *.pyc
 .DS_Store
-.env
-</code></pre>
-<h3>Step 4: Build with your AI, in that folder</h3>
+.env</code></pre>
+<h4>Step 4: Build with your AI, in that folder</h4>
 <ol>
-<li>Open the <strong>Claude desktop app</strong> and point it at <code>~/my-ham-radio-project</code>.</li>
+<li>Open the <strong>Claude desktop app</strong> and point it at your <strong>my-ham-radio-project</strong> folder (in your home folder).</li>
 <li>Attach your source material: the rules, a datasheet, a sample log.</li>
-<li>Start up the <a href="#prompting">staircase</a> with step 1. For example:</li>
-</ol>
+<li>
+<p>Start up the <a href="#prompting">staircase</a> with step 1. For example:</p>
 <blockquote>
 <p>Ask me clarifying questions before you write any code. I want a Python script named <code>log_parser.py</code> in this folder that reads my Cabrillo log <code>contest.log</code> and prints the number of contacts per band, so I can check my totals before I submit.</p>
 </blockquote>
-<ol start="4">
-<li>When something breaks, give it the evidence:</li>
-</ol>
+</li>
+<li>
+<p>When something breaks, give it the evidence:</p>
 <blockquote>
 <p>I ran the script and got this error: [paste]. Find the root cause and fix <code>log_parser.py</code> in place.</p>
 </blockquote>
-<ol start="5">
-<li>Ask for a README and a CHANGELOG as you go, not at the end.</li>
+</li>
+<li>
+<p>Ask for a README and a CHANGELOG as you go, not at the end.</p>
+</li>
 </ol>
-<h3>Step 5: Publish to GitHub</h3>
-<p>Start private; make it public when you're ready to share.</p>
-<pre><code class="language-bash">gh repo create my-ham-radio-project --private --source=. --remote=origin
+<h4>Step 5: Publish to GitHub</h4>
+<p>Start private; make it public when you're ready to share. In Terminal, in your project folder:</p>
+<pre class="highlight"><code class="language-bash">gh repo create my-ham-radio-project --private --source=. --remote=origin
 git add .
-git commit -m &quot;First working log parser&quot;
-git push -u origin main
-</code></pre>
+git commit -m "First working log parser"
+git push -u origin main</code></pre>
 <p>After that, each update is:</p>
-<pre><code class="language-bash">git add .
-git commit -m &quot;Describe what changed and why&quot;
-git push
-</code></pre>
+<pre class="highlight"><code class="language-bash">git add .
+git commit -m "Describe what changed and why"
+git push</code></pre>
 <p>To share later: repository <strong>Settings → General → Danger Zone → Change visibility</strong>. To share privately, add collaborators under <strong>Settings → Collaborators</strong>.</p>
-<h3>Step 6 (optional): Free web hosting with GitHub Pages</h3>
+<h4>Step 6 (optional): Free web hosting with GitHub Pages</h4>
 <p>If you built a web page or dashboard (like <a href="https://github.com/rusk2ua/nyqp-dashboard">nyqp-dashboard</a>):</p>
 <ol>
-<li>Put the web files (<code>index.html</code> and friends) in a <code>docs/</code> folder.</li>
-<li>Add an empty <code>docs/.nojekyll</code> file so GitHub serves the files as they are:</li>
-</ol>
-<p><code>bash
-   touch docs/.nojekyll
-   git add docs/
-   git commit -m "Add web page"
-   git push</code></p>
-<ol start="3">
-<li>On GitHub: <strong>Settings → Pages → Build and deployment</strong>, source <strong>Deploy from a branch</strong>, branch <strong>main</strong>, folder <strong>/docs</strong>. Save.</li>
+<li>Put the web files (<code>index.html</code> and friends) in a <code>docs</code> folder in your project.</li>
+<li>
+<p>Add an empty <code>.nojekyll</code> file there so GitHub serves the files as they are, and publish:</p>
+<pre class="highlight"><code class="language-bash">touch docs/.nojekyll
+git add docs
+git commit -m "Add web page"
+git push</code></pre>
+</li>
+<li>
+<p>On GitHub: <strong>Settings → Pages → Build and deployment</strong>, source <strong>Deploy from a branch</strong>, branch <strong>main</strong>, folder <strong>/docs</strong>. Save.</p>
+</li>
 <li>A minute or so later it's live at <code>https://your-username.github.io/my-ham-radio-project/</code>.</li>
 </ol>
 <p>On a free GitHub account, Pages needs a public repository, and the published site is public.</p>
+</details>
 <h2>Connecting Claude to GitHub</h2>
 <p>You can also connect Claude to your GitHub account so it can read and update your repositories directly. Ask Claude: "How do I connect you to my GitHub account?" and follow the current instructions for your plan. See also GitHub's <a href="https://docs.github.com/en/get-started">getting started docs</a>.</p>
 </section>
