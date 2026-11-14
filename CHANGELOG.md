@@ -9,6 +9,7 @@ Versions are date-based (`YYYY.MM.DD`).
 - Prompting guide brought in line with Anthropic's current advice: the anatomy is now goal and why, input, output, and when unsure. Role-play openers dropped, a "what you can skip" section added, and a table of real inputs and outputs from four gallery projects. The staircase is now framed as steps you can check.
 - Prompt library template 1 rewritten without a role opener, and the library intro points to the anatomy.
 - README short version updated to match.
+- GitHub setup guide now opens with "The easy way: ask Claude": four plain steps and a starter prompt for people new to GitHub. The full manual steps follow.
 - Field notes: two more remkey findings from real hardware (a library installed into the wrong Python, and a summary page added because Claude's web reader wouldn't parse JSON) and one more CI catch.
 
 ## [2026.11.04]

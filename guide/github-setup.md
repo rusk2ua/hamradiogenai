@@ -1,8 +1,27 @@
-# Step-by-step: from idea to a shared GitHub project
+# Getting started with GitHub
 
-This walks you through setting up Git and GitHub, building in a local folder with your AI companion, and publishing from the terminal.
+GitHub is a free place on the web where your project files live, with every version saved, and where you can share them when you're ready.
 
-## Step 1: Create your online hub
+## The easy way: ask Claude
+
+You don't need to learn GitHub's commands to use it. After a one-time setup, Claude can manage it for you.
+
+1. **Make a free GitHub account** at [github.com](https://github.com), in your web browser.
+2. **Connect it once, with guidance.** You can use the GitHub website or the command line, whichever you're comfortable with. Claude can walk you through either, one step at a time.
+3. **Start one project with Claude.** Attach the rules or the datasheet, and [climb the staircase](prompting.md).
+4. **Let Claude manage GitHub.** Saving versions, keeping your email address private, and sharing the project when you're ready. Just ask.
+
+Don't know where to start? Ask Claude:
+
+> Walk me through getting started with GitHub, step by step.
+
+Two good habits to ask for on day one: start projects **private** and make them public only when you mean to share, and use your GitHub **noreply** email address so your personal one never appears in public.
+
+## The manual way: every step yourself
+
+If you'd rather do it yourself, or want to see what Claude is doing for you, here is the whole process: setting up Git and GitHub, building in a local folder with your AI companion, and publishing from the terminal.
+
+### Step 1: Create your online hub
 
 1. Create a free account at [github.com](https://github.com).
 2. Install the official **GitHub CLI**:
@@ -16,7 +35,7 @@ This walks you through setting up Git and GitHub, building in a local folder wit
 
    Follow the prompts to sign in through your browser. No passwords typed into the terminal.
 
-## Step 2: Protect your email address
+### Step 2: Protect your email address
 
 Before your first commit, set Git to use your GitHub **noreply** address. Find it in GitHub **Settings → Emails**:
 
@@ -27,7 +46,7 @@ git config --global user.email "1234567+yourname@users.noreply.github.com"
 
 While you're there, turn on **"Block command line pushes that expose my email."**
 
-## Step 3: Start a project folder
+### Step 3: Start a project folder
 
 ```bash
 mkdir ~/my-ham-radio-project
@@ -46,7 +65,7 @@ __pycache__/
 .env
 ```
 
-## Step 4: Build with your AI, in that folder
+### Step 4: Build with your AI, in that folder
 
 1. Open the **Claude desktop app** and point it at `~/my-ham-radio-project`.
 2. Attach your source material: the rules, a datasheet, a sample log.
@@ -60,7 +79,7 @@ __pycache__/
 
 5. Ask for a README and a CHANGELOG as you go, not at the end.
 
-## Step 5: Publish to GitHub
+### Step 5: Publish to GitHub
 
 Start private; make it public when you're ready to share.
 
@@ -81,7 +100,7 @@ git push
 
 To share later: repository **Settings → General → Danger Zone → Change visibility**. To share privately, add collaborators under **Settings → Collaborators**.
 
-## Step 6 (optional): Free web hosting with GitHub Pages
+### Step 6 (optional): Free web hosting with GitHub Pages
 
 If you built a web page or dashboard (like [nyqp-dashboard](https://github.com/rusk2ua/nyqp-dashboard)):
 

@@ -21,7 +21,7 @@ This is a living resource. The paper in the Microwave Update 2026 Proceedings is
 | Learn from real bugs | [Field notes](guide/lessons.md): defects caught against the rules, by tests, and on real hardware |
 | Check your own repo | [What good looks like](guide/good-repo-checklist.md) |
 | Connect AI to your data | [MCP, safely](guide/mcp.md) |
-| Set up Git and GitHub | [Step-by-step setup guide](guide/github-setup.md) |
+| Set up Git and GitHub | [Getting started with GitHub](guide/github-setup.md): the easy way, with Claude, or every step yourself |
 | Answer the skeptics | [Common questions](guide/faq.md) |
 
 ## The short version

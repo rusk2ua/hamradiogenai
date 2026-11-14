@@ -648,9 +648,24 @@ README and your recommendation.</p>
 </ol>
 </section>
 <section class="doc" id="github-setup">
-<h1>Step-by-step: from idea to a shared GitHub project</h1>
-<p>This walks you through setting up Git and GitHub, building in a local folder with your AI companion, and publishing from the terminal.</p>
-<h2>Step 1: Create your online hub</h2>
+<h1>Getting started with GitHub</h1>
+<p>GitHub is a free place on the web where your project files live, with every version saved, and where you can share them when you're ready.</p>
+<h2>The easy way: ask Claude</h2>
+<p>You don't need to learn GitHub's commands to use it. After a one-time setup, Claude can manage it for you.</p>
+<ol>
+<li><strong>Make a free GitHub account</strong> at <a href="https://github.com">github.com</a>, in your web browser.</li>
+<li><strong>Connect it once, with guidance.</strong> You can use the GitHub website or the command line, whichever you're comfortable with. Claude can walk you through either, one step at a time.</li>
+<li><strong>Start one project with Claude.</strong> Attach the rules or the datasheet, and <a href="#prompting">climb the staircase</a>.</li>
+<li><strong>Let Claude manage GitHub.</strong> Saving versions, keeping your email address private, and sharing the project when you're ready. Just ask.</li>
+</ol>
+<p>Don't know where to start? Ask Claude:</p>
+<blockquote>
+<p>Walk me through getting started with GitHub, step by step.</p>
+</blockquote>
+<p>Two good habits to ask for on day one: start projects <strong>private</strong> and make them public only when you mean to share, and use your GitHub <strong>noreply</strong> email address so your personal one never appears in public.</p>
+<h2>The manual way: every step yourself</h2>
+<p>If you'd rather do it yourself, or want to see what Claude is doing for you, here is the whole process: setting up Git and GitHub, building in a local folder with your AI companion, and publishing from the terminal.</p>
+<h3>Step 1: Create your online hub</h3>
 <ol>
 <li>Create a free account at <a href="https://github.com">github.com</a>.</li>
 <li>Install the official <strong>GitHub CLI</strong>:
@@ -661,13 +676,13 @@ README and your recommendation.</p>
 <p><code>bash
    gh auth login</code></p>
 <p>Follow the prompts to sign in through your browser. No passwords typed into the terminal.</p>
-<h2>Step 2: Protect your email address</h2>
+<h3>Step 2: Protect your email address</h3>
 <p>Before your first commit, set Git to use your GitHub <strong>noreply</strong> address. Find it in GitHub <strong>Settings → Emails</strong>:</p>
 <pre><code class="language-bash">git config --global user.name &quot;Your Name, CALL&quot;
 git config --global user.email &quot;1234567+yourname@users.noreply.github.com&quot;
 </code></pre>
 <p>While you're there, turn on <strong>"Block command line pushes that expose my email."</strong></p>
-<h2>Step 3: Start a project folder</h2>
+<h3>Step 3: Start a project folder</h3>
 <pre><code class="language-bash">mkdir ~/my-ham-radio-project
 cd ~/my-ham-radio-project
 git init -b main
@@ -680,7 +695,7 @@ __pycache__/
 .DS_Store
 .env
 </code></pre>
-<h2>Step 4: Build with your AI, in that folder</h2>
+<h3>Step 4: Build with your AI, in that folder</h3>
 <ol>
 <li>Open the <strong>Claude desktop app</strong> and point it at <code>~/my-ham-radio-project</code>.</li>
 <li>Attach your source material: the rules, a datasheet, a sample log.</li>
@@ -698,7 +713,7 @@ __pycache__/
 <ol start="5">
 <li>Ask for a README and a CHANGELOG as you go, not at the end.</li>
 </ol>
-<h2>Step 5: Publish to GitHub</h2>
+<h3>Step 5: Publish to GitHub</h3>
 <p>Start private; make it public when you're ready to share.</p>
 <pre><code class="language-bash">gh repo create my-ham-radio-project --private --source=. --remote=origin
 git add .
@@ -711,7 +726,7 @@ git commit -m &quot;Describe what changed and why&quot;
 git push
 </code></pre>
 <p>To share later: repository <strong>Settings → General → Danger Zone → Change visibility</strong>. To share privately, add collaborators under <strong>Settings → Collaborators</strong>.</p>
-<h2>Step 6 (optional): Free web hosting with GitHub Pages</h2>
+<h3>Step 6 (optional): Free web hosting with GitHub Pages</h3>
 <p>If you built a web page or dashboard (like <a href="https://github.com/rusk2ua/nyqp-dashboard">nyqp-dashboard</a>):</p>
 <ol>
 <li>Put the web files (<code>index.html</code> and friends) in a <code>docs/</code> folder.</li>
