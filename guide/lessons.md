@@ -16,7 +16,7 @@ The pattern: a band table, a multiplier, a version string. Small, confident and 
 ## Caught by tests and CI
 
 - **The gain formula.** Written as `(η·π·D/λ)²` instead of `η·(π·D/λ)²`, the dish gain equation squares the efficiency and understates gain by 1.25–1.55 dB. In [offset-microwave-dish-comparisons](https://github.com/rusk2ua/offset-microwave-dish-comparisons), a test named `test_efficiency_not_squared` guards against it, and CI fails if the README's tables no longer match what the code computes.
-- **A firmware image that wouldn't compile.** In [remkey](https://github.com/rusk2ua/remkey), CI builds every Arduino image on every push. It caught a break before anyone flashed a board.
+- **A firmware image that wouldn't compile.** In [remkey](https://github.com/rusk2ua/remkey), CI builds every Arduino image on every push. It caught a break before anyone flashed a board, and caught another when the telemetry split added a struct the Arduino IDE's generated prototypes couldn't see (the fix: move the struct into a header).
 - **A flaky test that was really a timing race.** remkey's "keyer unplugged mid-transmit" test sometimes failed on slow runners. The cause was the test replugging the keyer before the client had heard PTT drop. The fix was in the test, not the code, plus a per-test timeout so a hung test fails fast and names itself.
 - **A deploy that could roll itself back.** In [10ghz-web-logger-analyzer](https://github.com/rusk2ua/10ghz-web-logger-analyzer), changing the budget-alert email would make AWS replace two fixed-name budgets, fail, and roll back the whole update. `deploy.sh` now reuses the existing address and refuses a different one, with tests run against a fake AWS CLI.
 
@@ -26,6 +26,8 @@ remkey's software passed CI on three operating systems before it touched the rad
 
 - A VPN on the shack PC blocked inbound connections on the remote-access network, so the docs now describe running Tailscale alongside NordVPN, with measured latency.
 - Unplugging the paddle's USB keyer mid-transmission needed a graceful PTT release and automatic reconnect.
+- Adding the cloud copy, `pip install` put the AWS library into a different Python than the one the station service runs in (a virtual environment). The fix was an install script that finds the right one, and an error message that names the Python it's running.
+- Claude's web reader wouldn't parse the raw JSON feed, so the uploader also writes a plain HTML summary page for it to read.
 
 Each finding went straight back into the README and build plan, so the next builder doesn't hit it.
 

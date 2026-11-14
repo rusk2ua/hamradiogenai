@@ -2,6 +2,12 @@
 
 Versions are date-based (`YYYY.MM.DD`).
 
+## [2026.11.14]
+
+### Changed
+- Gallery entry for remkey: tower telemetry split into a tower-top node and a supply-box node at the tower base, a shack web dashboard, and a read-only cloud copy that people (with a password) and Claude can check from anywhere.
+- Field notes: two more remkey findings from real hardware (a library installed into the wrong Python, and a summary page added because Claude's web reader wouldn't parse JSON) and one more CI catch.
+
 ## [2026.11.04]
 
 ### Added

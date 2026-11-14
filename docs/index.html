@@ -416,7 +416,7 @@ README and your recommendation.</p>
 </tr>
 <tr>
 <td><a href="https://github.com/rusk2ua/remkey">remkey</a></td>
-<td>Remote paddle CW for an IC-7610 driving a tower-top 10 GHz transverter, plus LoRa tower telemetry. Now running end to end on the real station over Tailscale</td>
+<td>Remote paddle CW for an IC-7610 driving a tower-top 10 GHz transverter, plus LoRa tower telemetry from two nodes (tower top, and a supply box at the tower base). Remote CW runs end to end on the real station over Tailscale; a web dashboard shows the telemetry in the shack, and a read-only cloud copy lets people (with a password) and Claude check the tower from anywhere</td>
 <td><strong>Tests before the tower.</strong> CI on three OSes and firmware simulation first; then real-station findings (VPN coexistence, a USB unplug mid-transmit) written straight back into the docs</td>
 </tr>
 <tr>
@@ -508,7 +508,7 @@ README and your recommendation.</p>
 <h2>Caught by tests and CI</h2>
 <ul>
 <li><strong>The gain formula.</strong> Written as <code>(η·π·D/λ)²</code> instead of <code>η·(π·D/λ)²</code>, the dish gain equation squares the efficiency and understates gain by 1.25–1.55 dB. In <a href="https://github.com/rusk2ua/offset-microwave-dish-comparisons">offset-microwave-dish-comparisons</a>, a test named <code>test_efficiency_not_squared</code> guards against it, and CI fails if the README's tables no longer match what the code computes.</li>
-<li><strong>A firmware image that wouldn't compile.</strong> In <a href="https://github.com/rusk2ua/remkey">remkey</a>, CI builds every Arduino image on every push. It caught a break before anyone flashed a board.</li>
+<li><strong>A firmware image that wouldn't compile.</strong> In <a href="https://github.com/rusk2ua/remkey">remkey</a>, CI builds every Arduino image on every push. It caught a break before anyone flashed a board, and caught another when the telemetry split added a struct the Arduino IDE's generated prototypes couldn't see (the fix: move the struct into a header).</li>
 <li><strong>A flaky test that was really a timing race.</strong> remkey's "keyer unplugged mid-transmit" test sometimes failed on slow runners. The cause was the test replugging the keyer before the client had heard PTT drop. The fix was in the test, not the code, plus a per-test timeout so a hung test fails fast and names itself.</li>
 <li><strong>A deploy that could roll itself back.</strong> In <a href="https://github.com/rusk2ua/10ghz-web-logger-analyzer">10ghz-web-logger-analyzer</a>, changing the budget-alert email would make AWS replace two fixed-name budgets, fail, and roll back the whole update. <code>deploy.sh</code> now reuses the existing address and refuses a different one, with tests run against a fake AWS CLI.</li>
 </ul>
@@ -517,6 +517,8 @@ README and your recommendation.</p>
 <ul>
 <li>A VPN on the shack PC blocked inbound connections on the remote-access network, so the docs now describe running Tailscale alongside NordVPN, with measured latency.</li>
 <li>Unplugging the paddle's USB keyer mid-transmission needed a graceful PTT release and automatic reconnect.</li>
+<li>Adding the cloud copy, <code>pip install</code> put the AWS library into a different Python than the one the station service runs in (a virtual environment). The fix was an install script that finds the right one, and an error message that names the Python it's running.</li>
+<li>Claude's web reader wouldn't parse the raw JSON feed, so the uploader also writes a plain HTML summary page for it to read.</li>
 </ul>
 <p>Each finding went straight back into the README and build plan, so the next builder doesn't hit it.</p>
 <h2>The takeaways</h2>
@@ -699,7 +701,7 @@ See <a href="#workbench">the workbench</a>. I use Claude for nearly everything n
 </main>
 <footer><div class="wrap">
 <div>Rus Healy, K2UA · <a href="https://10ghzdx.com">10ghzdx.com</a> · <a href="https://github.com/rusk2ua">github.com/rusk2ua</a> · contact via <a href="https://www.qrz.com/db/K2UA">QRZ.com</a></div>
-<div>Version 2026.11.04 · built from the Markdown in <a href="https://github.com/rusk2ua/hamradiogenai/tree/main/guide">guide/</a></div>
+<div>Version 2026.11.14 · built from the Markdown in <a href="https://github.com/rusk2ua/hamradiogenai/tree/main/guide">guide/</a></div>
 </div></footer>
 <script>
 document.querySelectorAll('pre').forEach(function(pre){

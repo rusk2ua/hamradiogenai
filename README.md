@@ -3,7 +3,7 @@
 **Building and sharing real Amateur Radio projects with generative AI**
 By Rus Healy, K2UA · Companion to *From Soldering Irons to Syntax*, Microwave Update 2026
 
-**Website:** <https://rusk2ua.github.io/hamradiogenai/> · **Landing page:** <https://10ghzdx.com/mud2026> · **Version:** 2026.11.04 ([changelog](CHANGELOG.md))
+**Website:** <https://rusk2ua.github.io/hamradiogenai/> · **Landing page:** <https://10ghzdx.com/mud2026> · **Version:** 2026.11.14 ([changelog](CHANGELOG.md))
 
 This is a living resource. The paper in the Microwave Update 2026 Proceedings is the August 2026 snapshot; this repository is where the material keeps evolving.
 
