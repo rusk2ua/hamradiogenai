@@ -52,7 +52,7 @@ __pycache__/
 2. Attach your source material: the rules, a datasheet, a sample log.
 3. Start up the [staircase](prompting.md) with step 1. For example:
 
-   > Ask me clarifying questions before you write any code. I want a Python script named `log_parser.py` in this folder that reads the Cabrillo log `contest.log` and prints the number of contacts per band.
+   > Ask me clarifying questions before you write any code. I want a Python script named `log_parser.py` in this folder that reads my Cabrillo log `contest.log` and prints the number of contacts per band, so I can check my totals before I submit.
 
 4. When something breaks, give it the evidence:
 

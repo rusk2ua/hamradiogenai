@@ -163,22 +163,10 @@ footer a{color:var(--amber)}
 </ul>
 </section>
 <section class="doc" id="prompting">
-<h1>Prompting: the staircase and the anatomy</h1>
-<h2>Climb the Progressive Prompting Staircase</h2>
-<p>Never ask for the whole application in one prompt. Build it in steps, each on working code from the last, so you're never debugging five new problems at once. It's the same as bringing up a microwave chain: LO, then mixer, then PA, then sequencing.</p>
-<ol>
-<li><strong>Spec and architecture.</strong> Write down the requirements and the approach before any code.</li>
-<li><strong>File in, file out.</strong> "Read this Cabrillo log and print the QSO count."</li>
-<li><strong>Core logic and math.</strong> Parsing, distance and bearing, scoring.</li>
-<li><strong>Visuals and interface.</strong> Maps, plots, a web page.</li>
-<li><strong>Polish, test, document.</strong> Edge cases, tests, README, changelog.</li>
-</ol>
-<h3>The one rule to say first</h3>
-<blockquote>
-<p>Always ask me clarifying questions before you begin writing code.</p>
-</blockquote>
-<p>It forces the model to work from your constraints instead of guessing. Better still, its questions surface design decisions you hadn't made yet.</p>
-<h2>Anatomy of a strong technical prompt</h2>
+<h1>Prompting: the anatomy and the staircase</h1>
+<p>Anthropic's own advice is to treat the AI like a brilliant new colleague who has never seen your station. Write your prompt so that a sharp club member with no background could follow it. If they'd be confused, the AI will be too.</p>
+<p>You don't need special words, role-play or formatting tricks. Plain sentences, the real files and the reason you want the result do most of the work.</p>
+<h2>Anatomy of a prompt that works</h2>
 <table>
 <thead>
 <tr>
@@ -189,48 +177,107 @@ footer a{color:var(--amber)}
 </thead>
 <tbody>
 <tr>
-<td><strong>Role</strong></td>
-<td>Who the AI is and what it values</td>
-<td>"You're a Python developer who values clean, single-file scripts."</td>
-</tr>
-<tr>
-<td><strong>Context</strong></td>
-<td>What you're building and why</td>
-<td>"A grid-square map of a 10 GHz contest log, to share with other rovers."</td>
-</tr>
-<tr>
-<td><strong>Constraints</strong></td>
-<td>The hard limits</td>
-<td>"Python only, runs on Mac and Windows, no database. Score per the attached rules."</td>
+<td><strong>Goal and why</strong></td>
+<td>What you want, and what it's for</td>
+<td>"I want maps of the grid squares I worked in the 10 GHz contest, so I can share them with the other rovers."</td>
 </tr>
 <tr>
 <td><strong>Input</strong></td>
-<td>The shape of your data</td>
-<td>"A Cabrillo 3.0 log. Sample attached."</td>
+<td>The real material, attached</td>
+<td>"My Cabrillo 3.0 log from the 2025 10 GHz and Up contest, attached."</td>
 </tr>
 <tr>
 <td><strong>Output</strong></td>
-<td>The deliverable</td>
-<td>"One high-resolution PNG per band, darker grids for more contacts."</td>
+<td>Exactly what you want back, and where it will run</td>
+<td>"One high-resolution PNG per band. Darker squares for more contacts, labels only on grids I worked, map sized to fit the log. One command, on my Mac or my Windows PC."</td>
+</tr>
+<tr>
+<td><strong>When unsure</strong></td>
+<td>Permission to ask, and to admit it doesn't know</td>
+<td>"Ask me questions before you start. If the log is unclear, say so instead of guessing."</td>
 </tr>
 </tbody>
 </table>
-<p>Not a developer? Leave the libraries out. Describe the picture you want and where it will run (your own computer, or a cloud account). The model will choose sensible libraries. If you are a developer, name them.</p>
+<p>Why each part matters:</p>
+<ul>
+<li><strong>The why changes the result.</strong> "So I can share them with the other rovers" tells the model the maps must stand on their own for someone else. Current models do noticeably better when they know the purpose.</li>
+<li><strong>Attach the real thing.</strong> A real log beats any description of a log. The same goes for rules PDFs, datasheets and your station's actual numbers.</li>
+<li><strong>Describe an output you can check.</strong> A file, a plot, a calculator you can re-run, a plan you can read. Not just "tell me the answer."</li>
+<li><strong>Permission to say "I'm not sure"</strong> is what keeps the model from inventing an answer.</li>
+</ul>
+<p>Not a developer? Leave the libraries out. Describe the result you want and where it will run, and let the model choose the tools. If you are a developer, name them.</p>
+<h3>What you can skip</h3>
+<p>Older prompting guides suggested habits that today's models don't need:</p>
+<ul>
+<li><strong>Role-play openers</strong> such as "You are an expert Python developer." Say what you want instead.</li>
+<li><strong>SHOUTING and absolutes</strong> such as "NEVER do X." Give the reason instead: "Use only the attached rules, because the published ones online may be out of date."</li>
+<li><strong>One giant prompt with every rule you can think of.</strong> Start short, look at what comes back, then add what was missing.</li>
+</ul>
+<h2>Inputs and outputs from real projects</h2>
+<p>The same pattern, from the projects in the <a href="#projects">gallery</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Input: what I attached</th>
+<th>Output: what I asked for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/rusk2ua/10ghz-log-analyzer">10ghz-log-analyzer</a></td>
+<td>My Cabrillo or CSV log, and the ARRL rules PDF</td>
+<td>A submittable Cabrillo file with claimed score, plus polar plots by direction and band</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rusk2ua/optical-receive-chain">optical-receive-chain</a></td>
+<td>Photodiode and op-amp datasheets, and "flat from 500 Hz to 15 kHz"</td>
+<td>A small calculator that prints stability, bandwidth and noise, not just a part value</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rusk2ua/portable-10ghz-eme">portable-10ghz-eme</a></td>
+<td>My station: 76 cm dish, 25 W, 1 dB noise figure, fixed horizontal polarization</td>
+<td>The link budget first, then a step-by-step build doc for each pointing option</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rusk2ua/remkey">remkey</a></td>
+<td>How my station is wired: IC-7610, tower-top transverter, AnyDesk</td>
+<td>A build plan covering what happens if the link drops mid-transmit, before any code</td>
+</tr>
+</tbody>
+</table>
+<p>The input is the real thing. The output is something you can check.</p>
+<h2>Climb the staircase: build in steps you can check</h2>
+<p>Build in steps, each on working results from the last, so you're never debugging five new problems at once. It's the same as bringing up a microwave chain: LO, then mixer, then PA, then sequencing.</p>
+<ol>
+<li><strong>Spec and architecture.</strong> Write down the requirements and the approach before any code.</li>
+<li><strong>File in, file out.</strong> "Read this Cabrillo log and print the QSO count per band."</li>
+<li><strong>Core logic and math.</strong> Parsing, distance and bearing, scoring.</li>
+<li><strong>Visuals and interface.</strong> Maps, plots, a web page.</li>
+<li><strong>Polish, test, document.</strong> Edge cases, tests, README, changelog.</li>
+</ol>
+<p>Today's models can take on much bigger jobs in one go than they could a year ago. The steps aren't there because the AI can't cope; they're there for you. Each one ends with something you can run and check before you build on it.</p>
+<h3>The one habit to start with</h3>
+<blockquote>
+<p>Ask me clarifying questions before you write any code.</p>
+</blockquote>
+<p>Its questions surface design decisions you hadn't made yet.</p>
 <p>Ready-to-adapt prompts are in the <a href="#prompts">prompt library</a>.</p>
 </section>
 <section class="doc" id="prompts">
 <h1>Prompt library</h1>
-<p>Templates modeled on how the projects in the <a href="#projects">gallery</a> were built. Copy one, replace the bracketed parts, attach your source material, and start a fresh conversation per project. Every one assumes you've said: <strong>"Ask me clarifying questions before you write any code."</strong></p>
+<p>Templates modeled on how the projects in the <a href="#projects">gallery</a> were built. Copy one, replace the bracketed parts, attach your real files, and start a fresh conversation per project. Each one follows the <a href="#prompting">anatomy</a>: the goal and why, the input, the output, and what to do when unsure. Every one assumes you've said: <strong>"Ask me clarifying questions before you write any code."</strong></p>
 <hr />
 <h2>1. Score a contest from the official rules</h2>
 <p><em>Pattern behind <a href="https://github.com/rusk2ua/10ghz-log-analyzer">10ghz-log-analyzer</a>.</em></p>
-<pre><code class="language-text">You're a Python developer who writes clear, well-commented scripts for
-non-programmers. I'm a ham radio contester, not a developer.
+<pre><code class="language-text">I'm a ham radio contester, not a developer. I want a tool that scores my
+[CONTEST NAME] log so I can check my claimed score before I submit it.
+Please write clear, well-commented code that I can follow.
 
-I've attached the official rules for [CONTEST NAME] and a sample log in
-[Cabrillo 3.0 / CSV with columns ...]. Score the log exactly as the rules
-say. Do not look up the rules anywhere else. If the rules are ambiguous,
-stop and ask me.
+I've attached the official rules and my real log in [Cabrillo 3.0 / CSV
+with columns ...]. Score the log exactly as the attached rules say. Use only
+those rules, because versions found online may be out of date. If the rules
+are ambiguous, stop and ask me.
 
 Start with step 1 only: read the log and print the number of QSOs per band.
 Then we'll add scoring, then reports, one step at a time.
@@ -640,7 +687,7 @@ __pycache__/
 <li>Start up the <a href="#prompting">staircase</a> with step 1. For example:</li>
 </ol>
 <blockquote>
-<p>Ask me clarifying questions before you write any code. I want a Python script named <code>log_parser.py</code> in this folder that reads the Cabrillo log <code>contest.log</code> and prints the number of contacts per band.</p>
+<p>Ask me clarifying questions before you write any code. I want a Python script named <code>log_parser.py</code> in this folder that reads my Cabrillo log <code>contest.log</code> and prints the number of contacts per band, so I can check my totals before I submit.</p>
 </blockquote>
 <ol start="4">
 <li>When something breaks, give it the evidence:</li>

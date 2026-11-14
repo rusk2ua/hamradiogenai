@@ -15,7 +15,7 @@ This is a living resource. The paper in the Microwave Update 2026 Proceedings is
 |---|---|
 | Understand the approach | [The grounded builder](guide/principles.md): curate, isolate, stay the control operator |
 | Pick your tools | [The workbench, October 2026](guide/workbench.md) |
-| Write prompts that work | [The staircase and the anatomy of a prompt](guide/prompting.md) |
+| Write prompts that work | [The anatomy of a prompt and the staircase](guide/prompting.md) |
 | Build something tonight | [Prompt library](guide/prompts.md): ten templates you can adapt |
 | See real examples | [Project gallery](guide/projects.md): 14 public projects and the technique each one shows |
 | Learn from real bugs | [Field notes](guide/lessons.md): defects caught against the rules, by tests, and on real hardware |
@@ -29,8 +29,9 @@ This is a living resource. The paper in the Microwave Update 2026 Proceedings is
 1. **Curate before you code.** Give the AI the primary source: the rules PDF, the datasheet, a real sample log. Don't let it guess.
 2. **Isolate the context.** One project, one folder, one conversation.
 3. **Be the control operator.** The AI writes syntax; logic, limits and compliance stay yours. Check output against the rules and real data.
-4. **Climb the staircase.** Spec, then file I/O, then core logic, then visuals, then polish. Never one giant prompt.
-5. **Say this first:** *"Ask me clarifying questions before you write any code."*
+4. **Write it plainly.** Say what you want and why, attach the real files, describe the output you'll check, and let it ask questions or say it's unsure. No role-play or magic words needed.
+5. **Climb the staircase.** Spec, then file I/O, then core logic, then visuals, then polish, checking each step before the next.
+6. **Say this first:** *"Ask me clarifying questions before you write any code."*
 
 ## Repository layout
 

@@ -1,6 +1,6 @@
 # Prompt library
 
-Templates modeled on how the projects in the [gallery](projects.md) were built. Copy one, replace the bracketed parts, attach your source material, and start a fresh conversation per project. Every one assumes you've said: **"Ask me clarifying questions before you write any code."**
+Templates modeled on how the projects in the [gallery](projects.md) were built. Copy one, replace the bracketed parts, attach your real files, and start a fresh conversation per project. Each one follows the [anatomy](prompting.md): the goal and why, the input, the output, and what to do when unsure. Every one assumes you've said: **"Ask me clarifying questions before you write any code."**
 
 ---
 
@@ -9,13 +9,14 @@ Templates modeled on how the projects in the [gallery](projects.md) were built. 
 *Pattern behind [10ghz-log-analyzer](https://github.com/rusk2ua/10ghz-log-analyzer).*
 
 ```text
-You're a Python developer who writes clear, well-commented scripts for
-non-programmers. I'm a ham radio contester, not a developer.
+I'm a ham radio contester, not a developer. I want a tool that scores my
+[CONTEST NAME] log so I can check my claimed score before I submit it.
+Please write clear, well-commented code that I can follow.
 
-I've attached the official rules for [CONTEST NAME] and a sample log in
-[Cabrillo 3.0 / CSV with columns ...]. Score the log exactly as the rules
-say. Do not look up the rules anywhere else. If the rules are ambiguous,
-stop and ask me.
+I've attached the official rules and my real log in [Cabrillo 3.0 / CSV
+with columns ...]. Score the log exactly as the attached rules say. Use only
+those rules, because versions found online may be out of date. If the rules
+are ambiguous, stop and ask me.
 
 Start with step 1 only: read the log and print the number of QSOs per band.
 Then we'll add scoring, then reports, one step at a time.
