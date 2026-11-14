@@ -8,6 +8,7 @@ Versions are date-based (`YYYY.MM.DD`).
 - Gallery entry for remkey: tower telemetry split into a tower-top node and a supply-box node at the tower base, a shack web dashboard, and a read-only cloud copy that people (with a password) and Claude can check from anywhere.
 - Prompting guide brought in line with Anthropic's current advice: the anatomy is now goal and why, input, output, and when unsure. Role-play openers dropped, a "what you can skip" section added, and a table of real inputs and outputs from four gallery projects. The staircase is now framed as steps you can check.
 - Prompt library template 1 rewritten without a role opener, and the library intro points to the anatomy.
+- README and the website's header link the November 2026 slides (PDF).
 - README short version updated to match.
 - GitHub setup guide now opens with "The easy way: ask Claude": four plain steps and a starter prompt for people new to GitHub. The full manual steps follow, now split into two selectable sections: Windows (PowerShell, installing Git and the GitHub CLI with winget) and Mac (Terminal, with Homebrew).
 
